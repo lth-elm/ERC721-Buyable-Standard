@@ -1,0 +1,19 @@
+{
+  "name": "nft-buyable",
+  "version": "1.0.0",
+  "description": "This EIP allows an ERC-721 token to become buyable and to specifically enforce royalties as a percentage, directly on-chain, without entrusting a third-party.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aubay <aubay.com>, BOCA Jeabby (@bjeabby1507), EL MERSHATI Laith (@lth-elm), KEMP Elia (@eliakemp)",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "hardhat": "^2.12.3"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.0",
+    "dotenv": "^16.0.3"
+  }
+}
