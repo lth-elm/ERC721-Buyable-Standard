@@ -8,29 +8,31 @@ import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
  * bytes4 private constant _INTERFACE_ID_ERC721Buyable = 0x8ce7e09d;
  */
 interface IERC721Buyable is IERC721 {
-
     /**
      * @dev Emitted when `amount` of ether is transferred from `buyer` to `seller` when purchasing a token.
      */
-    event Purchase(address indexed buyer, address indexed seller, uint indexed amount);
+    event Purchase(
+        address indexed buyer,
+        address indexed seller,
+        uint256 indexed amount
+    );
 
     /**
      * @dev Emitted when price of `tokenId` is set to `price`.
      */
-    event UpdatePrice(uint indexed tokenId, uint indexed price);
+    event UpdatePrice(uint256 indexed tokenId, uint256 indexed price);
 
     /**
      * @dev Emitted when `tokenId` is removed from the sale.
      */
-    event RemoveFromSale(uint indexed tokenId);
+    event RemoveFromSale(uint256 indexed tokenId);
 
     /**
      * @dev Emitted when royalty percentage is set to `royalty`.
      */
-    event UpdateRoyalty(uint indexed royalty);
+    event UpdateRoyalty(uint256 indexed royalty);
 
-
-    /** 
+    /**
      * @notice Puts a token to sale and set its price.
      * @dev Requirements:
      *
@@ -41,9 +43,9 @@ interface IERC721Buyable is IERC721 {
      * @param _tokenId uint representing the token ID number.
      * @param _price uint representing the price at which to sell the token.
      */
-    function setPrice(uint _tokenId, uint _price) external;
+    function setPrice(uint256 _tokenId, uint256 _price) external;
 
-    /** 
+    /**
      * @notice Removes a token from the sale.
      * @dev Requirements:
      *
@@ -53,9 +55,9 @@ interface IERC721Buyable is IERC721 {
      *
      * @param _tokenId uint representing the token ID number.
      */
-    function removeTokenSale(uint _tokenId) external;
+    function removeTokenSale(uint256 _tokenId) external;
 
-    /** 
+    /**
      * @notice Buys a specific token from its ID onchain.
      * @dev Amount of ether msg.value sent is transferred to `seller` of the token.
      * A percentage of the royalty allocution is sent to `_owner` of the contract.
@@ -71,8 +73,7 @@ interface IERC721Buyable is IERC721 {
      *
      * @param _tokenId uint representing the token Id number.
      */
-    function buyToken(uint _tokenId) external payable;
-
+    function buyToken(uint256 _tokenId) external payable;
 
     /**
      * @notice Return the current royalty and its denominator.
@@ -80,9 +81,9 @@ interface IERC721Buyable is IERC721 {
      * @return _royalty uint within the range of `_royaltyDenominator` associated with the token.
      * @return _denominator uint denominator set in `_royaltyDenominator()`.
      */
-    function royaltyInfo() external view returns(uint, uint);
+    function royaltyInfo() external view returns (uint256, uint256);
 
-    /** 
+    /**
      * @notice Set the royalty percentage.
      * @dev Set or update the royalty percentage within the range of `_royaltyDenominator`.
      * Update the `_firstRoyaltyUpdate` boolean to true if previously false.
@@ -97,5 +98,5 @@ interface IERC721Buyable is IERC721 {
      *
      * @param _newRoyalty uint within the range of `_royaltyDenominator` as new tokens royalties.
      */
-    function setRoyalty(uint _newRoyalty) external;
-} 
+    function setRoyalty(uint256 _newRoyalty) external;
+}

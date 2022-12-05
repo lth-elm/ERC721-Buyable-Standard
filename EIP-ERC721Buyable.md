@@ -11,16 +11,13 @@ created: 2022-05-17
 requires: 721
 ---
 
-
 ## Abstract
 
 This EIP allows an [ERC-721](/EIPS/eip-721) token to become buyable and to specifically enforce royalties as a percentage, directly on-chain, without entrusting a third-party. A decentralized marketplace can be built around this interface.
 
-
 ## Motivation
 
 As of now, we expect marketplaces to voluntarily pay royalties “off-chain”. But this process is not yet widely adopted and relies on the marketplace being trustworthy. We have created an improvement proposal that automatically calculates & pays royalties on-chain for every token sold. On top of that, our improvement proposal allows the [ERC-721](/EIPS/eip-721) token to be financially tradeable in ETH on-chain without the need for marketplaces and the issues that comes with them: security, royalties not respected or limited.
-
 
 ## Specification
 
@@ -75,7 +72,7 @@ interface IERC721Buyable is IERC721 {
     event UpdateRoyalty(uint indexed royalty);
 
 
-    /** 
+    /**
      * @notice Puts a token to sale and set its price.
      * @dev Requirements:
      *
@@ -88,7 +85,7 @@ interface IERC721Buyable is IERC721 {
      */
     function setPrice(uint _tokenId, uint _price) external;
 
-    /** 
+    /**
      * @notice Removes a token from the sale.
      * @dev Requirements:
      *
@@ -100,7 +97,7 @@ interface IERC721Buyable is IERC721 {
      */
     function removeTokenSale(uint _tokenId) external;
 
-    /** 
+    /**
      * @notice Buys a specific token from its ID onchain.
      * @dev Amount of ether msg.value sent is transferred to `seller` of the token.
      * A percentage of the royalty allocution is sent to `_owner` of the contract.
@@ -127,7 +124,7 @@ interface IERC721Buyable is IERC721 {
      */
     function royaltyInfo() external view returns(uint, uint);
 
-    /** 
+    /**
      * @notice Set the royalty percentage.
      * @dev Set or update the royalty percentage within the range of `_royaltyDenominator`.
      * Update the `_firstRoyaltyUpdate` boolean to true if previously false.
@@ -143,7 +140,7 @@ interface IERC721Buyable is IERC721 {
      * @param _newRoyalty uint within the range of `_royaltyDenominator` as new tokens royalties.
      */
     function setRoyalty(uint _newRoyalty) external;
-} 
+}
 ```
 
 To create and deploy an ERC721Buyable contract one **MAY** only inherit directly from this [ERC-721](/EIPS/eip-721) extension that would directly signal support for ERC721Buyable:
@@ -185,44 +182,44 @@ function isIDERCBuyable(address _contractAddr) internal view returns(bool) {
 
 Returns true if a contract implements the interface defined by `interfaceId`.
 
-| Parameter | Description |
-| ----------|-------------|
-| interfaceId  | bytes4 representing the support of a contract interface. |
+| Parameter   | Description                                              |
+| ----------- | -------------------------------------------------------- |
+| interfaceId | bytes4 representing the support of a contract interface. |
 
 #### **setPrice**
 
 Puts a token to sale and sets its price.
 
-| Parameter | Description |
-| ----------|-------------|
-| _tokenId  | uint representing the token ID number. |
-| _price    | uint representing the price at which to sell the token. |
+| Parameter | Description                                             |
+| --------- | ------------------------------------------------------- |
+| \_tokenId | uint representing the token ID number.                  |
+| \_price   | uint representing the price at which to sell the token. |
 
 #### **removeTokenSale**
 
 Removes a token from the sale.
 
-| Parameter | Description |
-| ----------|-------------|
-| _tokenId  | uint representing the token ID number. |
+| Parameter | Description                            |
+| --------- | -------------------------------------- |
+| \_tokenId | uint representing the token ID number. |
 
 #### **buyToken**
 
 Buys a specific token from its ID onchain.
 
-| Parameter | Description |
-| ----------|-------------|
-| _tokenId  | uint representing the token ID number. |
+| Parameter | Description                            |
+| --------- | -------------------------------------- |
+| \_tokenId | uint representing the token ID number. |
 
-#### **_royaltyDenominator**
+#### **\_royaltyDenominator**
 
-The denominator to interpret the rate of royalties, defaults to 10000 so rate are expressed in basis points. *May be customized with an override.*
+The denominator to interpret the rate of royalties, defaults to 10000 so rate are expressed in basis points. _May be customized with an override._
 
-#### **_defaultRoyalty**
+#### **\_defaultRoyalty**
 
 Royalty percentage per default at the contract creation expressed in basis points (between 0 and `_royaltyDenominator` and 1000 per default).
 
-#### **_royalty**
+#### **\_royalty**
 
 Return the current royalty without its denominator.
 
@@ -234,26 +231,25 @@ Return the current royalty and its denominator.
 
 Set the royalty percentage.
 
-| Parameter | Description |
-| ----------|-------------|
-| _newRoyalty | uint within the range of `_royaltyDenominator` as new tokens royalties. |
+| Parameter    | Description                                                             |
+| ------------ | ----------------------------------------------------------------------- |
+| \_newRoyalty | uint within the range of `_royaltyDenominator` as new tokens royalties. |
 
-#### **_payRoyalties**
+#### **\_payRoyalties**
 
 Send to `_owner` of the contract a specific amount of ether as royalties.
 
-| Parameter | Description |
-| ----------|-------------|
-| _amount   | uint for the royalty payment. |
-
+| Parameter | Description                   |
+| --------- | ----------------------------- |
+| \_amount  | uint for the royalty payment. |
 
 ## Rationale
 
-* Fully on-chain transaction condition
+- Fully on-chain transaction condition
 
 We wanted to make it possible for a token to be sold and buyable within its own contract so that their holders don't have to interact with any other third parties and take the risk of being affected by a vulnerability within the selling condition as it was recently seen with Opensea that had their marketplace conduct off-chain listing in order to save gas. A middleman (whether on-chain or off-chain) sometimes adds unnecessary extra steps + approvals when the blockchain actually allows direct peer-to-peer exchanges with total trust thanks to the conditions written in the smart-contract.
 
-* Royalties matter
+- Royalties matter
 
 Regarding the royalties payment, NFT creators rely on marketplaces like OpenSea & Rarible to collect it when their creations are sold. Over time, we discussed the idea of making this entire process completely decentralised. With such solution, artists would be allowed to 100% enforce their due royalties without taking the risk of trusting a marketplace to pay them directly nor having to specify to each marketplace one by one the % they want to collect while being constrained to be capped. Our solution by being able to directly sell a token onchain makes it easy to do just that.
 
@@ -261,38 +257,33 @@ Although we considered integrating this option in another extension, we ultimate
 
 To avoid any mischievous manipulation we decided that is not possible to increase the royalty % once the contract is deployed but only to decrease it under its current value.
 
-* Other considerations
+- Other considerations
 
 We have considered implementing a paymentSplitter option at the moment of the royalty payment as it can be useful for a large team but we felt that it was out of place here and would make the standard more cumbersome for nothing. Indeed, a team could just override few functions to adapt it to their use case or just use other solutions such as multisigs.
 
 We had first created a mapping that records whether a token is for sale or not along with the one that associates a token to its price, finally we thought that the second one is enough. Indeed, if a token is associated to a non zero price then it is for sale, otherwise not (price at 0).
 
-* Extend compatibility
+- Extend compatibility
 
 If this proposal gets approved, we can definitely create an extension for both [ERC-1155](/EIPS/eip-1155) and ERC721A which is becoming more and more popular among developers as they begin to adopt this new form of standard.
 
 Other aspects could also be integrated such as the support for auctions and/or extension with an operator filter registry model like the Opensea one.
 
-
 ## Backwards Compatibility
 
 There are no backward compatibility issues, this implementation is an extension of the functionality of ERC-721 from [EIP-721](/EIPS/eip-721). This EIP is fully backward compatible and introduces new functionality retaining the core interfaces and functionality of the [ERC-721 standard](/EIPS/eip-721).
 
-
 ## Test Cases
 
-*Test cases for an implementation are mandatory for EIPs that are affecting consensus changes.  If the test suite is too large to reasonably be included inline, then consider adding it as one or more files in `../assets/eip-####/`.*
-
+_Test cases for an implementation are mandatory for EIPs that are affecting consensus changes. If the test suite is too large to reasonably be included inline, then consider adding it as one or more files in `../assets/eip-####/`._
 
 ## Reference Implementation
 
-*An optional section that contains a reference/example implementation that people can use to assist in understanding or implementing this specification. If the implementation is too large to reasonably be included inline, then consider adding it as one or more files in `../assets/eip-####/`.*
-
+_An optional section that contains a reference/example implementation that people can use to assist in understanding or implementing this specification. If the implementation is too large to reasonably be included inline, then consider adding it as one or more files in `../assets/eip-####/`._
 
 ## Security Considerations
 
 There are no security considerations related directly to the implementation of this standard. Discussion with reviewers can still be found at <URL>.
-
 
 ## Copyright
 
