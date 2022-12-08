@@ -1,26 +1,25 @@
 import "./App.css";
-import Wallet from "./Wallet";
+import Wallet from "./components/Wallet";
+import Interface from "./pages/Interface";
+import NotConnected from "./components/NotConnected";
 
 import { useAccount } from "wagmi";
 
 function App() {
   const { address, isConnected } = useAccount();
+  console.log("Connected with ", address);
 
   return (
     <div className="App">
       <header className="App-header">
         <div>
-          <h1>Dashboard</h1>
+          <h1>ERC721 Buyable</h1>
         </div>
         <div>
           <Wallet />
         </div>
       </header>
-      {isConnected ? (
-        <p>Connected with {address}</p>
-      ) : (
-        <p>Please connect your wallet</p>
-      )}
+      {isConnected ? <Interface /> : <NotConnected />}
     </div>
   );
 }
