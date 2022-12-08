@@ -1,23 +1,25 @@
-import logo from "./logo.svg";
 import "./App.css";
+import Wallet from "./components/Wallet";
+import Interface from "./pages/Interface";
+import NotConnected from "./components/NotConnected";
+
+import { useAccount } from "wagmi";
 
 function App() {
+  const { address, isConnected } = useAccount();
+  console.log("Connected with ", address);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div>
+          <h1>ERC721 Buyable</h1>
+        </div>
+        <div>
+          <Wallet />
+        </div>
       </header>
+      {isConnected ? <Interface /> : <NotConnected />}
     </div>
   );
 }
