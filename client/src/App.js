@@ -19,6 +19,7 @@ function App() {
           <Wallet />
         </div>
       </header>
+      <h1>Decentralized Marketplace</h1>
       {isConnected ? <Interface /> : <NotConnected />}
     </div>
   );
