@@ -1,5 +1,5 @@
 import "./App.css";
-import Interface from "./pages/Interface";
+import Interface from "./Interface";
 import NotConnected from "./components/NotConnected";
 
 import "@rainbow-me/rainbowkit/styles.css";
