@@ -2,8 +2,6 @@ import "./App.css";
 import Interface from "./Interface";
 import NotConnected from "./components/NotConnected";
 
-//test push
-
 import "@rainbow-me/rainbowkit/styles.css";
 import {
   getDefaultWallets,
