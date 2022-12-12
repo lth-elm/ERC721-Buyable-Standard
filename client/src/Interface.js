@@ -27,7 +27,7 @@ export default function Interface() {
   // Test a NON ERC721 Buyable : "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
   // Test a VALID ERC721 Buyable : "0x5FbDB2315678afecb367f032d93F642f64180aa3"
   const [contractAddress, setContractAddress] = useState(
-    "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+    "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
   );
   const [supportInterface, setSupportInterface] = useState(false);
 
@@ -36,11 +36,33 @@ export default function Interface() {
     checkContractData();
   }, [signer]);
 
+  const resetStates = () => {
+    setSupportInterface(false);
+    // setRoyaltyDenominator(0);
+    // setRoyalty(0);
+    // setContractOwner("")
+    // setIsAdmin(false);
+    // setTokenURIs([]);
+    // setPriceList([]);
+    // setTokenOwned([]);
+    // setFoundData(false);
+  };
+
   const checkContractData = async () => {
     let support = false;
+
+    const urlContractAddressParam = searchParams.get("contractAddress");
+    if (urlContractAddressParam) {
+      setContractAddress(urlContractAddressParam);
+    }
+
+    const getContractAddress = urlContractAddressParam
+      ? urlContractAddressParam
+      : contractAddress;
+
     try {
       const contract = new ethers.Contract(
-        contractAddress,
+        getContractAddress,
         contractABI,
         signer
       );
@@ -55,9 +77,9 @@ export default function Interface() {
       console.log("Support interface ?", support);
       setSupportInterface(support);
     } catch (error) {
-      console.log(error);
-      // resetStates();
-      // alert("Contract doesn't support interface or doesn't exists");
+      console.log("error:", error);
+      resetStates();
+      alert("Contract doesn't support interface or doesn't exists");
     }
 
     if (support) {
@@ -74,17 +96,19 @@ export default function Interface() {
       </p>
       {supportInterface && (
         <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Layout param={contractAddress} />}>
             <Route
               index
-              element={
-                <Collection
-                  contractAddress={searchParams.get("contractAddress")}
-                />
-              }
+              element={<Collection contractAddress={contractAddress} />}
             />
-            <Route path="owner" element={<ContractOwner />} />
-            <Route path="tokens" element={<TokensOwner />} />
+            <Route
+              path="owner"
+              element={<ContractOwner contractAddress={contractAddress} />}
+            />
+            <Route
+              path="tokens"
+              element={<TokensOwner contractAddress={contractAddress} />}
+            />
             <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>
