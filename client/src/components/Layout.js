@@ -1,11 +1,12 @@
 import { Outlet, Link } from "react-router-dom";
 
-const Layout = (param) => {
+const Layout = ({ param }) => {
   console.log("Get param in layout", param);
   var urlParam;
-  if (param.param) {
-    urlParam = "?contractAddress=" + param.param;
+  if (param.foundUrlParam) {
+    urlParam = "?contractAddress=" + param.contractAddress;
   }
+  console.log("Found url param", param.foundUrlParam);
   console.log("Generated url param", urlParam);
 
   return (
@@ -13,15 +14,17 @@ const Layout = (param) => {
       <nav>
         <ul>
           <li>
-            <Link to={param.param ? `/owner${urlParam}` : "/owner"}>
+            <Link to={param.foundUrlParam ? `/owner${urlParam}` : "/owner"}>
               Contract Owner
             </Link>
           </li>
           <li>
-            <Link to={param.param ? `/${urlParam}` : "/"}>Collection</Link>
+            <Link to={param.foundUrlParam ? `/${urlParam}` : "/"}>
+              Collection
+            </Link>
           </li>
           <li>
-            <Link to={param.param ? `/tokens${urlParam}` : "/tokens"}>
+            <Link to={param.foundUrlParam ? `/tokens${urlParam}` : "/tokens"}>
               My Tokens
             </Link>
           </li>

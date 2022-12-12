@@ -76,7 +76,7 @@ export default function Interface() {
       // setIsAdmin(owner.toUpperCase() === props.account.toUpperCase());
 
       support = await contract.supportsInterface(0x8ce7e09d);
-      console.log("Support interface ?", support);
+      console.log("Support interface?", support);
       setSupportInterface(support);
     } catch (error) {
       console.log("error:", error);
@@ -92,6 +92,15 @@ export default function Interface() {
 
   return (
     <div className="Interface">
+      <form>
+        <label>Contract address</label>
+        <input
+          type="text"
+          value={contractAddress}
+          onChange={(e) => setContractAddress(e.target.value)}
+        />
+        <button onClick={checkContractData}>Find Collection</button>
+      </form>
       <p>
         Contract support ERC721 Buyable interface :{" "}
         {supportInterface ? "True" : "False"}
@@ -100,31 +109,19 @@ export default function Interface() {
         <Routes>
           <Route
             path="/"
-            element={<Layout param={foundUrlParam ? contractAddress : null} />}
+            element={<Layout param={{ contractAddress, foundUrlParam }} />}
           >
             <Route
               index
-              element={
-                <Collection
-                  contractAddress={foundUrlParam ? contractAddress : null}
-                />
-              }
+              element={<Collection contractAddress={contractAddress} />}
             />
             <Route
               path="owner"
-              element={
-                <ContractOwner
-                  contractAddress={foundUrlParam ? contractAddress : null}
-                />
-              }
+              element={<ContractOwner contractAddress={contractAddress} />}
             />
             <Route
               path="tokens"
-              element={
-                <TokensOwner
-                  contractAddress={foundUrlParam ? contractAddress : null}
-                />
-              }
+              element={<TokensOwner contractAddress={contractAddress} />}
             />
             <Route path="*" element={<NoPage />} />
           </Route>
