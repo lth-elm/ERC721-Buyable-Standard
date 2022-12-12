@@ -1,5 +1,6 @@
+#root {background-color: #181d31; }
 .App {
-  background-color: #181D31;
+  background-color: #181d31;
   text-align: center;
   min-height: 100vh;
   color: white;
@@ -10,6 +11,20 @@
   pointer-events: none;
 }
 
+
+
+
+header h1 {
+  text-align: start;
+  /* color: #ead8b8; */
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+
+
 .App-header {
   padding: 0px 20px;
   display: flex;
@@ -17,12 +32,184 @@
   justify-content: space-between;
 }
 
-header h1 {
-  text-align: start;
-  color: #ead8b8;
+.App-header.orange .title {
+  color: #f8cc82;
+}
+.App-header.light .title {
+  color: #E6E2C3;
+}
+/* Hardhat button */
+.App-header.orange .iekbcc0.iekbcc9.ju367v71.ju367v7m.ju367v86.ju367v6f.ju367v4.ju367v9x.ju367vn.ju367vec.ju367vfo.ju367vb.ju367va.ju367v11.ju367v1c.ju367v1k.ju367v8o._12cbo8i3.ju367v8m._12cbo8i4._12cbo8i6 {
+  background-color: #f8cc82;
+}
+.App-header.light .iekbcc0.iekbcc9.ju367v71.ju367v7m.ju367v86.ju367v6f.ju367v4.ju367v9x.ju367vn.ju367vec.ju367vfo.ju367vb.ju367va.ju367v11.ju367v1c.ju367v1k.ju367v8o._12cbo8i3.ju367v8m._12cbo8i4._12cbo8i6 {
+  background-color: #E6E2C3;
+}
+/* address button */
+.App-header.orange .iekbcc0.ju367v70.ju367v7l.ju367v85.ju367v6e.ju367va3.ju367vcf.ju367vn.ju367vt.ju367vw.ju367vfo.ju367v11.ju367v1c.ju367v8o {
+  background-color: #f8cc82;
+}
+.App-header.light .iekbcc0.ju367v70.ju367v7l.ju367v85.ju367v6e.ju367va3.ju367vcf.ju367vn.ju367vt.ju367vw.ju367vfo.ju367v11.ju367v1c.ju367v8o {
+  background-color: #E6E2C3;
+}
+/* address button text */
+.App-header .iekbcc0.ju367v8 {
+  color: #2C2E37
 }
 
-.App-link {
-  color: #61dafb;
+/* hardhat and value text */
+.App-header .iekbcc0.ju367v9.ju367v6 {
+  color: #2C2E37;
 }
+
+/* value */
+.App-header.orange .iekbcc0.ju367v86.ju367v6f.ju367v72.ju367v7l.ju367v9.ju367v6 {
+  color: #f8cc82;
+  /* background-color: blue; */
+}
+.App-header.light .iekbcc0.ju367v86.ju367v6f.ju367v72.ju367v7l.ju367v9.ju367v6 {
+  color: #E6E2C3;
+}
+
+.App-header svg {
+  color: #2C2E37
+}
+
+/* value background color */
+.App-header .iekbcc0.iekbcc9.ju367v4.ju367v9x.ju367vn.ju367vec.ju367vfo.ju367va.ju367v11.ju367v1c.ju367v8o._12cbo8i3.ju367v8m._12cbo8i4._12cbo8i6 {
+  background: #2C2E37;
+}
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-right: 10px;
+}
+.switch input {
+  display: none;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #2C2E37;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #f8cc82;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+input:checked + .slider::before {
+  background-color: #e6e2c3;
+}
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+.slider.round {
+  border-radius: 34px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+
+
+/* :root {
+  --light: #d8dbe0;
+  --dark: #28292c;
+  --link: rgb(27, 129, 112);
+  --link-hover: rgb(24, 94, 82);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #cfafaf;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 50px;
+  background-color: blue;
+}
+
+label {
+  position: absolute;
+  width: 10%;
+  height: 100px;
+  background-color: var(--dark);
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+input {
+  position: absolute;
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  width: 10%;
+  height: 100%;
+  border-radius: 50px;
+  transition: 0.3s;
+}
+
+input:checked ~ .slider {
+  background-color: var(--light);
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  top: 13px;
+  left: 16px;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  box-shadow: inset 28px -4px 0px 0px var(--light);
+  background-color: var(--dark);
+  transition: 0.3s;
+}
+
+input:checked ~ .slider::before {
+  transform: translateX(95px);
+  background-color: var(--dark);
+  box-shadow: none;
+} */
 
