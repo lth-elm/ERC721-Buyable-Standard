@@ -27,9 +27,10 @@ export default function Interface() {
   // Test a NON ERC721 Buyable : "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
   // Test a VALID ERC721 Buyable : "0x5FbDB2315678afecb367f032d93F642f64180aa3"
   const [contractAddress, setContractAddress] = useState(
-    "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
+    "0x5FbDB2315678afecb367f032d93F642f64180aa3"
   );
   const [supportInterface, setSupportInterface] = useState(false);
+  const [foundUrlParam, setFoundUrlParam] = useState(false);
 
   useEffect(() => {
     if (!signer) return;
@@ -54,6 +55,7 @@ export default function Interface() {
     const urlContractAddressParam = searchParams.get("contractAddress");
     if (urlContractAddressParam) {
       setContractAddress(urlContractAddressParam);
+      setFoundUrlParam(true);
     }
 
     const getContractAddress = urlContractAddressParam
@@ -96,18 +98,33 @@ export default function Interface() {
       </p>
       {supportInterface && (
         <Routes>
-          <Route path="/" element={<Layout param={contractAddress} />}>
+          <Route
+            path="/"
+            element={<Layout param={foundUrlParam ? contractAddress : null} />}
+          >
             <Route
               index
-              element={<Collection contractAddress={contractAddress} />}
+              element={
+                <Collection
+                  contractAddress={foundUrlParam ? contractAddress : null}
+                />
+              }
             />
             <Route
               path="owner"
-              element={<ContractOwner contractAddress={contractAddress} />}
+              element={
+                <ContractOwner
+                  contractAddress={foundUrlParam ? contractAddress : null}
+                />
+              }
             />
             <Route
               path="tokens"
-              element={<TokensOwner contractAddress={contractAddress} />}
+              element={
+                <TokensOwner
+                  contractAddress={foundUrlParam ? contractAddress : null}
+                />
+              }
             />
             <Route path="*" element={<NoPage />} />
           </Route>
