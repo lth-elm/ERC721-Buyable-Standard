@@ -1,0 +1,9 @@
+.Display {
+  display: flex;
+  justify-content: space-around;
+}
+
+.Display img {
+  height: 300px;
+  width: 300px;
+}
