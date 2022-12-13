@@ -2,12 +2,7 @@ import { useState, useEffect } from "react";
 import { useAccount, useSigner } from "wagmi";
 import { ethers } from "ethers";
 import { Buffer } from "buffer";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  useSearchParams,
-} from "react-router-dom";
+import { Routes, Route, useSearchParams } from "react-router-dom";
 
 import Layout from "./components/Layout";
 import Collection from "./pages/Collection";
@@ -38,13 +33,17 @@ export default function Interface() {
   const [name, setName] = useState("");
   const [symbol, setSymbol] = useState("");
   const [supply, setSupply] = useState(0);
-  const [contractOwner, setContractOwner] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
   const [tokenOwned, setTokenOwned] = useState([]);
   const [tokenURIs, setTokenURIs] = useState([]);
   const [priceList, setPriceList] = useState([]);
   const [royalty, setRoyalty] = useState(0);
   const [royaltyDenominator, setRoyaltyDenominator] = useState(0);
+
+  const [showDialog, setShowDialog] = useState(false);
+  const [showSign, setShowSign] = useState(false);
+  const [mined, setMined] = useState(false);
+  const [transactionHash, setTransactionHash] = useState("");
 
   useEffect(() => {
     if (!signer) return;
@@ -61,7 +60,6 @@ export default function Interface() {
     setSymbol("");
     setSupply(0);
     setRoyalty(0);
-    setContractOwner("");
     setIsAdmin(false);
     setTokenURIs([]);
     setPriceList([]);
@@ -94,7 +92,6 @@ export default function Interface() {
       const owner = await contract.owner();
 
       console.log("Contract owner", owner);
-      setContractOwner(owner);
       setIsAdmin(owner.toUpperCase() === address.toUpperCase());
 
       support = await contract.supportsInterface(0x8ce7e09d);
@@ -172,6 +169,67 @@ export default function Interface() {
     setFoundData(true);
   };
 
+  // const ConfirmDialog = () => {
+  //   return (
+  //     <Dialog open={true}>
+  //       <h3>
+  //         {mined && "Transaction Confirmed"}
+  //         {!mined && !showSign && "Confirming Your Transaction..."}
+  //         {!mined && showSign && "Please Sign to Confirm"}
+  //       </h3>
+  //       <div style={{ textAlign: "left", padding: "0px 20px 20px 20px" }}>
+  //         {mined && (
+  //           <div>
+  //             Your transaction has been confirmed and is on the blockchain.
+  //             <br />
+  //             <br />
+  //             <a
+  //               target="_blank"
+  //               rel="noreferrer"
+  //               href={`https://rinkeby.etherscan.io/tx/${transactionHash}`}
+  //             >
+  //               View on Etherscan
+  //             </a>
+  //           </div>
+  //         )}
+  //         {!mined && !showSign && (
+  //           <div>
+  //             <p>
+  //               Please wait while we confirm your transaction on the
+  //               blockchain....
+  //             </p>
+  //           </div>
+  //         )}
+  //         {!mined && showSign && (
+  //           <div>
+  //             <p>Please sign to confirm your transaction.</p>
+  //           </div>
+  //         )}
+  //       </div>
+  //       <div style={{ textAlign: "center", paddingBottom: "30px" }}>
+  //         {!mined && <CircularProgress />}
+  //       </div>
+  //       {mined && (
+  //         <Button
+  //           sx={{ background: "#F6FAFD", ":hover": { background: "#D8E6F1" } }}
+  //           onClick={() => {
+  //             setShowDialog(false);
+  //           }}
+  //         >
+  //           Close
+  //         </Button>
+  //       )}
+  //     </Dialog>
+  //   );
+  // };
+
+  const clearTransactionDialog = () => {
+    setShowDialog(false);
+    setShowSign(false);
+    setMined(false);
+    setTransactionHash("");
+  };
+
   return (
     <div className="Interface">
       <form>
@@ -202,7 +260,7 @@ export default function Interface() {
       <p>
         <strong>Royalties</strong>: {royalty} %
       </p>
-      {supportInterface && (
+      {supportInterface && foundData && (
         <Routes>
           <Route
             path="/"
@@ -210,15 +268,53 @@ export default function Interface() {
           >
             <Route
               index
-              element={<Collection contractAddress={contractAddress} />}
+              element={
+                <Collection
+                  nftContract={nftContract}
+                  tokenURIs={tokenURIs}
+                  priceList={priceList}
+                  getContractData={getContractData}
+                  clearTransactionDialog={clearTransactionDialog}
+                  setShowSign={setShowSign}
+                  setShowDialog={setShowDialog}
+                  setMined={setMined}
+                  setTransactionHash={setTransactionHash}
+                />
+              }
             />
             <Route
               path="owner"
-              element={<ContractOwner contractAddress={contractAddress} />}
+              element={
+                <ContractOwner
+                  nftContract={nftContract}
+                  isAdmin={isAdmin}
+                  royalty={royalty}
+                  royaltyDenominator={royaltyDenominator}
+                  getContractData={getContractData}
+                  clearTransactionDialog={clearTransactionDialog}
+                  setShowSign={setShowSign}
+                  setShowDialog={setShowDialog}
+                  setMined={setMined}
+                  setTransactionHash={setTransactionHash}
+                />
+              }
             />
             <Route
               path="tokens"
-              element={<TokensOwner contractAddress={contractAddress} />}
+              element={
+                <TokensOwner
+                  nftContract={nftContract}
+                  tokenOwned={tokenOwned}
+                  tokenURIs={tokenURIs}
+                  priceList={priceList}
+                  getContractData={getContractData}
+                  clearTransactionDialog={clearTransactionDialog}
+                  setShowSign={setShowSign}
+                  setShowDialog={setShowDialog}
+                  setMined={setMined}
+                  setTransactionHash={setTransactionHash}
+                />
+              }
             />
             <Route path="*" element={<NoPage />} />
           </Route>
