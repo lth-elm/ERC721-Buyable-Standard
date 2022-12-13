@@ -1,4 +1,6 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, NavLink } from "react-router-dom";
+import "../styles/Layout.css";
+import { useState } from "react";
 
 const Layout = ({ param }) => {
   console.log("Get param in layout", param);
@@ -11,22 +13,31 @@ const Layout = ({ param }) => {
 
   return (
     <div className="Layout">
-      <nav>
+      <nav className="navbar">
         <ul>
           <li>
-            <Link to={param.foundUrlParam ? `/owner${urlParam}` : "/owner"}>
+            <NavLink
+              to={param.foundUrlParam ? `/owner${urlParam}` : "/owner"}
+              className="owner"
+            >
               Contract Owner
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to={param.foundUrlParam ? `/${urlParam}` : "/"}>
+            <NavLink
+              to={param.foundUrlParam ? `/${urlParam}` : "/"}
+              className="collection"
+            >
               Collection
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to={param.foundUrlParam ? `/tokens${urlParam}` : "/tokens"}>
+            <NavLink
+              to={param.foundUrlParam ? `/tokens${urlParam}` : "/tokens"}
+              className="tokens"
+            >
               My Tokens
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>

@@ -1,4 +1,4 @@
-import "./App.css";
+import "./styles/App.css";
 import Interface from "./Interface";
 import NotConnected from "./components/NotConnected";
 
