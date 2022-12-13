@@ -18,7 +18,7 @@ contract NFTContract is ERC721Buyable {
         uint256 level;
     }
 
-    constructor() ERC721("NFTContract", "NFTC") {}
+    constructor() ERC721("ETH Stones", "ETHS") {}
 
     function mint() external returns (uint256) {
         require(supply.current() < 3, "Max supply exceeded");
@@ -96,7 +96,7 @@ contract NFTContract is ERC721Buyable {
                         '{"name": "',
                         attributes[_tokenId].name,
                         '",',
-                        '"description": "ETH Stones",',
+                        '"description": "ETH Stones for demonstration purpose",',
                         '"image_data": "',
                         getSvg(_tokenId),
                         '",',
