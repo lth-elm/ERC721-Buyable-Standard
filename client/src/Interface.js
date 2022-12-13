@@ -36,6 +36,8 @@ export default function Interface() {
   const [foundData, setFoundData] = useState(false);
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
+  const [symbol, setSymbol] = useState("");
+  const [supply, setSupply] = useState(0);
   const [contractOwner, setContractOwner] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
   const [tokenOwned, setTokenOwned] = useState([]);
@@ -56,6 +58,8 @@ export default function Interface() {
     setRoyalty(0);
     setDescription("");
     setName("");
+    setSymbol("");
+    setSupply(0);
     setRoyalty(0);
     setContractOwner("");
     setIsAdmin(false);
@@ -114,8 +118,12 @@ export default function Interface() {
       signer
     );
 
-    const supply = await contract.totalSupply();
-    console.log("Total supply:", supply.toString());
+    setName(await contract.name());
+    setSymbol(await contract.symbol());
+
+    const getSupply = await contract.totalSupply();
+    setSupply(getSupply);
+    console.log("Total supply:", getSupply.toString());
 
     const totalOwned = await contract.balanceOf(address);
     console.log("Connected address owns :", totalOwned.toString(), "tokens");
@@ -124,7 +132,7 @@ export default function Interface() {
     const owned = [];
     const uris = [];
 
-    for (let i = 1; i <= supply; i++) {
+    for (let i = 1; i <= getSupply; i++) {
       const uri = await contract.tokenURI(i);
       const json = await Buffer.from(uri.substring(29), "base64").toString();
       const jsonUri = JSON.parse(json);
@@ -146,6 +154,9 @@ export default function Interface() {
     console.log("Connected address owns following:", owned);
     setTokenURIs(uris);
     // console.log("URIs", uris);
+
+    setDescription(uris[0].description);
+    console.log("NFTs description:", uris[0].description);
 
     let roy;
     let denominator;
@@ -175,6 +186,21 @@ export default function Interface() {
       <p>
         Contract support ERC721 Buyable interface :{" "}
         {supportInterface ? "True" : "False"}
+      </p>
+      <p>
+        <strong>Name</strong>: {name}
+      </p>
+      <p>
+        <strong>Symbol</strong>: {symbol}
+      </p>
+      <p>
+        <strong>Total supply</strong>: {supply.toString()}
+      </p>
+      <p>
+        <strong>Description</strong>: {description}
+      </p>
+      <p>
+        <strong>Royalties</strong>: {royalty} %
       </p>
       {supportInterface && (
         <Routes>
