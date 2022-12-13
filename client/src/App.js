@@ -39,11 +39,15 @@ function App() {
   console.log("Connected with", address);
 
   const [style, setStyle] = useState("App-header orange");
+  const [animation, setAnimation] = useState("toOrange");
   const changeStyle = () => {
     style === "App-header orange"
       ? setStyle("App-header light")
       : setStyle("App-header orange");
     setChecked(!checked);
+    animation === "toLight"
+      ? setAnimation("toOrange")
+      : setAnimation("toLight");
   };
 
   const [checked, setChecked] = useState(false);
@@ -51,10 +55,10 @@ function App() {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider theme={darkTheme()} chains={chains}>
-        <div className="App">
+        <div className="App preload">
           <header className={style}>
             <div className="title">
-              <h1>ERC721 Buyable</h1>
+              <h1 className={animation}>ERC721 Buyable</h1>
             </div>
             <div className="header-right">
               <label className="switch">
