@@ -9,7 +9,6 @@ const hre = require("hardhat");
 async function main() {
   const Contract = await hre.ethers.getContractFactory("NFTContract");
   const contract = await Contract.deploy();
-
   await contract.deployed();
   console.log("Contract deployed to:", contract.address);
 
@@ -17,9 +16,12 @@ async function main() {
     "NFTContractNONBuyable"
   );
   const nonBuyableContract = await NONBuyableContract.deploy();
-
-  await contract.deployed();
+  await nonBuyableContract.deployed();
   console.log("NON Buyable Contract deployed to:", nonBuyableContract.address);
+
+  // await contract.mint();
+  // await contract.mint();
+  // await contract.mint();
 }
 
 // We recommend this pattern to be able to use async/await everywhere
