@@ -1,8 +1,16 @@
 import { Outlet, NavLink } from "react-router-dom";
 import "../styles/Layout.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const Layout = ({ param }) => {
+const Layout = ({ param, checked }) => {
+  const [style, setStyle] = useState("orange");
+
+  const changeStyle = () => {
+    console.log("checked", checked);
+    checked ? setStyle("light") : setStyle("orange");
+  };
+  useEffect(() => changeStyle());
+
   console.log("Get param in layout", param);
   var urlParam;
   if (param.foundUrlParam) {
@@ -18,7 +26,7 @@ const Layout = ({ param }) => {
           <li>
             <NavLink
               to={param.foundUrlParam ? `/owner${urlParam}` : "/owner"}
-              className="owner"
+              className={`owner ${style}`}
             >
               Contract Owner
             </NavLink>
@@ -26,7 +34,7 @@ const Layout = ({ param }) => {
           <li>
             <NavLink
               to={param.foundUrlParam ? `/${urlParam}` : "/"}
-              className="collection"
+              className={`collection ${style}`}
             >
               Collection
             </NavLink>
@@ -34,7 +42,7 @@ const Layout = ({ param }) => {
           <li>
             <NavLink
               to={param.foundUrlParam ? `/tokens${urlParam}` : "/tokens"}
-              className="tokens"
+              className={`tokens ${style}`}
             >
               My Tokens
             </NavLink>
