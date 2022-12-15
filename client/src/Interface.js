@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useAccount, useSigner } from "wagmi";
 import { ethers } from "ethers";
 import { Buffer } from "buffer";
-import { Routes, Route, useSearchParams } from "react-router-dom";
+import { Routes, Route, useSearchParams, useNavigate } from "react-router-dom";
 
 import Layout from "./components/Layout";
 import Collection from "./pages/Collection";
@@ -17,6 +17,7 @@ export default function Interface({ checked }) {
   const { address } = useAccount();
   const { data: signer } = useSigner();
 
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [foundUrlParam, setFoundUrlParam] = useState(false);
 
@@ -67,7 +68,11 @@ export default function Interface({ checked }) {
     setFoundData(false);
   };
 
-  const checkContractData = async () => {
+  const checkContractData = async (e) => {
+    if (e) {
+      e.preventDefault();
+    }
+
     let support = false;
 
     const urlContractAddressParam = searchParams.get("contractAddress");
@@ -76,16 +81,10 @@ export default function Interface({ checked }) {
       setFoundUrlParam(true);
     }
 
-    const getContractAddress = urlContractAddressParam
-      ? urlContractAddressParam
-      : contractAddress;
+    const getContractAddress = urlContractAddressParam ? urlContractAddressParam : contractAddress;
 
     try {
-      const contract = new ethers.Contract(
-        getContractAddress,
-        contractABI,
-        signer
-      );
+      const contract = new ethers.Contract(getContractAddress, contractABI, signer);
       console.log("NFT Contract", contract);
       setNFTContract(contract);
 
@@ -109,11 +108,7 @@ export default function Interface({ checked }) {
   };
 
   const getContractData = async (getContractAddress) => {
-    const contract = new ethers.Contract(
-      getContractAddress,
-      contractABI,
-      signer
-    );
+    const contract = new ethers.Contract(getContractAddress, contractABI, signer);
 
     setName(await contract.name());
     setSymbol(await contract.symbol());
@@ -230,16 +225,30 @@ export default function Interface({ checked }) {
     setTransactionHash("");
   };
 
+  const updateURL = (e) => {
+    e.preventDefault();
+    navigate(`/?contractAddress=${document.getElementById("newAddress").value}`, { replace: true });
+    checkContractData(e);
+  };
+
   return (
     <div className="Interface">
       <form>
         <label>Contract address</label>
         <input
           type="text"
-          value={contractAddress}
-          onChange={(e) => setContractAddress(e.target.value)}
+          id={"newAddress"}
+          placeholder={contractAddress}
+          // onInput={(e) => setContractAddress(e.target.value)}
         />
-        <button onClick={checkContractData}>Find Collection</button>
+        <button onClick={(e) => updateURL(e)}>Find Collection</button>
+        {/* <button
+          onClick={(e) => {
+            checkContractData(e);
+          }}
+        >
+          Find Collection
+        </button> */}
       </form>
       <p>
         Contract support ERC721 Buyable interface :{" "}
@@ -272,22 +281,21 @@ export default function Interface({ checked }) {
               <strong>Description</strong>
               <br /> <p>{description}</p>
             </span>
-            <span>
-              <strong>Royalties</strong>
-              <br /> <p>{royalty} %</p>
-            </span>
+            {supportInterface ? (
+              <span>
+                <strong>Royalties</strong>
+                <br /> <p>{royalty} %</p>
+              </span>
+            ) : (
+              ""
+            )}
           </div>
         </div>
         {supportInterface && foundData && (
           <Routes>
             <Route
               path="/"
-              element={
-                <Layout
-                  param={{ contractAddress, foundUrlParam }}
-                  checked={checked}
-                />
-              }
+              element={<Layout param={{ contractAddress, foundUrlParam }} checked={checked} />}
             >
               <Route
                 index
