@@ -25,7 +25,7 @@ contract NFTContract is ERC721Buyable {
         supply.increment();
 
         attributes[supply.current()] = Attr(
-            string(abi.encodePacked("ETH NFT #", supply.current().toString())),
+            string(abi.encodePacked("ETH Stone #", supply.current().toString())),
             supply.current()
         );
 
