@@ -13,7 +13,7 @@ import NoPage from "./pages/NoPage";
 import abi from "./abis/Interface.json";
 const contractABI = abi.abi;
 
-export default function Interface() {
+export default function Interface({ checked }) {
   const { address } = useAccount();
   const { data: signer } = useSigner();
 
@@ -243,83 +243,107 @@ export default function Interface() {
       </form>
       <p>
         Contract support ERC721 Buyable interface :{" "}
-        {supportInterface ? "True" : "False"}
+        {supportInterface ? (
+          <span className="support-true">True</span>
+        ) : (
+          <span className="support-false">False</span>
+        )}
       </p>
-      <p>
-        <strong>Name</strong>: {name}
-      </p>
-      <p>
-        <strong>Symbol</strong>: {symbol}
-      </p>
-      <p>
-        <strong>Total supply</strong>: {supply.toString()}
-      </p>
-      <p>
-        <strong>Description</strong>: {description}
-      </p>
-      <p>
-        <strong>Royalties</strong>: {royalty} %
-      </p>
-      {supportInterface && foundData && (
-        <Routes>
-          <Route
-            path="/"
-            element={<Layout param={{ contractAddress, foundUrlParam }} />}
-          >
+      <div className="interface-container">
+        <div className="info-container">
+          <div className="info-title">
+            <h2>Details</h2>
+          </div>
+          <div className="info-body">
+            <span>
+              <strong>Name</strong>
+              <br />
+              <p>{name}</p>
+            </span>
+            <span>
+              <strong>Symbol</strong>
+              <br /> <p>{symbol}</p>
+            </span>
+            <span>
+              <strong>Total supply</strong>
+              <br /> <p>{supply.toString()}</p>
+            </span>
+            <span>
+              <strong>Description</strong>
+              <br /> <p>{description}</p>
+            </span>
+            <span>
+              <strong>Royalties</strong>
+              <br /> <p>{royalty} %</p>
+            </span>
+          </div>
+        </div>
+        {supportInterface && foundData && (
+          <Routes>
             <Route
-              index
+              path="/"
               element={
-                <Collection
-                  nftContract={nftContract}
-                  tokenURIs={tokenURIs}
-                  priceList={priceList}
-                  getContractData={getContractData}
-                  clearTransactionDialog={clearTransactionDialog}
-                  setShowSign={setShowSign}
-                  setShowDialog={setShowDialog}
-                  setMined={setMined}
-                  setTransactionHash={setTransactionHash}
+                <Layout
+                  param={{ contractAddress, foundUrlParam }}
+                  checked={checked}
                 />
               }
-            />
-            <Route
-              path="owner"
-              element={
-                <ContractOwner
-                  nftContract={nftContract}
-                  isAdmin={isAdmin}
-                  royalty={royalty}
-                  royaltyDenominator={royaltyDenominator}
-                  getContractData={getContractData}
-                  clearTransactionDialog={clearTransactionDialog}
-                  setShowSign={setShowSign}
-                  setShowDialog={setShowDialog}
-                  setMined={setMined}
-                  setTransactionHash={setTransactionHash}
-                />
-              }
-            />
-            <Route
-              path="tokens"
-              element={
-                <TokensOwner
-                  nftContract={nftContract}
-                  tokenOwned={tokenOwned}
-                  tokenURIs={tokenURIs}
-                  priceList={priceList}
-                  getContractData={getContractData}
-                  clearTransactionDialog={clearTransactionDialog}
-                  setShowSign={setShowSign}
-                  setShowDialog={setShowDialog}
-                  setMined={setMined}
-                  setTransactionHash={setTransactionHash}
-                />
-              }
-            />
-            <Route path="*" element={<NoPage />} />
-          </Route>
-        </Routes>
-      )}
+            >
+              <Route
+                index
+                element={
+                  <Collection
+                    nftContract={nftContract}
+                    tokenURIs={tokenURIs}
+                    priceList={priceList}
+                    getContractData={getContractData}
+                    clearTransactionDialog={clearTransactionDialog}
+                    setShowSign={setShowSign}
+                    setShowDialog={setShowDialog}
+                    setMined={setMined}
+                    setTransactionHash={setTransactionHash}
+                  />
+                }
+              />
+              <Route
+                path="owner"
+                element={
+                  <ContractOwner
+                    nftContract={nftContract}
+                    isAdmin={isAdmin}
+                    royalty={royalty}
+                    royaltyDenominator={royaltyDenominator}
+                    getContractData={getContractData}
+                    clearTransactionDialog={clearTransactionDialog}
+                    setShowSign={setShowSign}
+                    setShowDialog={setShowDialog}
+                    setMined={setMined}
+                    setTransactionHash={setTransactionHash}
+                  />
+                }
+              />
+              <Route
+                path="tokens"
+                element={
+                  <TokensOwner
+                    nftContract={nftContract}
+                    tokenOwned={tokenOwned}
+                    tokenURIs={tokenURIs}
+                    priceList={priceList}
+                    getContractData={getContractData}
+                    clearTransactionDialog={clearTransactionDialog}
+                    setShowSign={setShowSign}
+                    setShowDialog={setShowDialog}
+                    setMined={setMined}
+                    setTransactionHash={setTransactionHash}
+                  />
+                }
+              />
+              <Route path="*" element={<NoPage />} />
+            </Route>
+          </Routes>
+        )}
+      </div>
     </div>
   );
 }

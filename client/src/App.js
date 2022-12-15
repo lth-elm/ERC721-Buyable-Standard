@@ -78,7 +78,7 @@ function App() {
           </header>
 
           <h1>Decentralized Marketplace</h1>
-          {isConnected ? <Interface /> : <NotConnected />}
+          {isConnected ? <Interface checked={checked} /> : <NotConnected />}
         </div>
       </RainbowKitProvider>
     </WagmiConfig>
