@@ -14,6 +14,8 @@ import ContractOwner from "./pages/ContractOwner";
 import TokensOwner from "./pages/TokensOwner";
 import NoPage from "./pages/NoPage";
 
+import "./styles/Interface.css";
+
 import abi from "./abis/Interface.json";
 const contractABI = abi.abi;
 
@@ -85,10 +87,16 @@ export default function Interface({ checked }) {
       setFoundUrlParam(true);
     }
 
-    const getContractAddress = urlContractAddressParam ? urlContractAddressParam : contractAddress;
+    const getContractAddress = urlContractAddressParam
+      ? urlContractAddressParam
+      : contractAddress;
 
     try {
-      const contract = new ethers.Contract(getContractAddress, contractABI, signer);
+      const contract = new ethers.Contract(
+        getContractAddress,
+        contractABI,
+        signer
+      );
       console.log("NFT Contract", contract);
       setNFTContract(contract);
 
@@ -112,7 +120,11 @@ export default function Interface({ checked }) {
   };
 
   const getContractData = async (getContractAddress) => {
-    const contract = new ethers.Contract(getContractAddress, contractABI, signer);
+    const contract = new ethers.Contract(
+      getContractAddress,
+      contractABI,
+      signer
+    );
 
     setName(await contract.name());
     setSymbol(await contract.symbol());
@@ -172,7 +184,13 @@ export default function Interface({ checked }) {
     const handleClose = () => clearTransactionDialog();
 
     return (
-      <Modal show={true} onHide={handleClose} backdrop="static" keyboard={false} centered>
+      <Modal
+        show={true}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        centered
+      >
         <Modal.Header closeButton>
           <Modal.Title>
             {mined && "Transaction Confirmed"}
@@ -199,7 +217,10 @@ export default function Interface({ checked }) {
             )}
             {!mined && !showSign && (
               <div>
-                <p>Please wait while we confirm your transaction on the blockchain....</p>
+                <p>
+                  Please wait while we confirm your transaction on the
+                  blockchain....
+                </p>
               </div>
             )}
             {!mined && showSign && (
@@ -218,7 +239,11 @@ export default function Interface({ checked }) {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button className="CloseModal" variant="secondary" onClick={handleClose}>
+          <Button
+            className="CloseModal"
+            variant="secondary"
+            onClick={handleClose}
+          >
             Close
           </Button>
         </Modal.Footer>
@@ -235,14 +260,17 @@ export default function Interface({ checked }) {
 
   const updateURL = (e) => {
     e.preventDefault();
-    navigate(`/?contractAddress=${document.getElementById("newAddress").value}`, { replace: true });
+    navigate(
+      `/?contractAddress=${document.getElementById("newAddress").value}`,
+      { replace: true }
+    );
     checkContractData(e);
   };
 
   return (
     <div className="Interface">
       <form>
-        <label>Contract address</label>
+        <label>Contract address&nbsp;</label>
         <input
           type="text"
           id={"newAddress"}
@@ -261,9 +289,33 @@ export default function Interface({ checked }) {
       <p>
         Contract support ERC721 Buyable interface :{" "}
         {supportInterface ? (
-          <span className="support-true">True</span>
+          <span className="support-true">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16.11 16.11"
+              width="25"
+              height="25"
+            >
+              <path
+                d="M14.808 3.317a1.01 1.01 0 0 1 0 1.427L6.753 12.798a1.01 1.01 0 0 1 -1.427 0L1.298 8.77a1.01 1.01 0 0 1 1.427 -1.427l3.317 3.313L13.387 3.317a1.01 1.01 0 0 1 1.427 0z"
+                fill="#2ecc71"
+              />
+            </svg>
+          </span>
         ) : (
-          <span className="support-false">False</span>
+          <span className="support-false">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 18.75 27"
+              width="18.75"
+              height="24.999"
+            >
+              <path
+                d="M18.388 4.126a1.564 1.564 0 0 0 -2.402 -2.002L9.375 10.058 2.764 2.124A1.564 1.564 0 0 0 0.362 4.126l6.977 8.375L0.362 20.874a1.564 1.564 0 0 0 2.402 2.002L9.375 14.942l6.611 7.934a1.564 1.564 0 0 0 2.402 -2.002l-6.977 -8.374 6.977 -8.375z"
+                fill="#d91e18"
+              />
+            </svg>
+          </span>
         )}
       </p>
       <div className="interface-container">
@@ -303,7 +355,12 @@ export default function Interface({ checked }) {
           <Routes>
             <Route
               path="/"
-              element={<Layout param={{ contractAddress, foundUrlParam }} checked={checked} />}
+              element={
+                <Layout
+                  param={{ contractAddress, foundUrlParam }}
+                  checked={checked}
+                />
+              }
             >
               <Route
                 index
