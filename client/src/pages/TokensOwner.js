@@ -1,4 +1,5 @@
 import { ethers } from "ethers";
+import Card from "./../components/Card";
 
 export default function TokensOwner(props) {
   const {
@@ -86,6 +87,13 @@ export default function TokensOwner(props) {
   const DisplayMyTokens = ({ i }) => {
     return (
       <div>
+        <Card
+          index={i}
+          img={tokenURIs[i].image_data}
+          name={tokenURIs[i].name}
+          price={priceList[i]}
+          available={priceList[i] > 0}
+        />
         <img src={tokenURIs[i].image_data} alt={tokenURIs[i].name} />
         {priceList[i] > 0 ? (
           <div>
