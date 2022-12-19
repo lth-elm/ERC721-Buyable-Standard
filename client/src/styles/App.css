@@ -62,7 +62,7 @@ header h1 {
   background-clip: text;
   color: transparent;
   display: block;
-  width: 250px;
+  width: 350px;
   animation: toLight 1s linear forwards;
   white-space: nowrap;
 }
@@ -73,8 +73,26 @@ header h1 {
     color: #f8cc82;
   }
   100% {
-    width: 250px;
+    width: 350px;
   }
+}
+
+/* ######################## Connect wallet button ######################## */
+.App-header.orange
+  .iekbcc0.iekbcc9.ju367v73.ju367v7o.ju367v9c.ju367vn.ju367vec.ju367vex.ju367v11.ju367v1c.ju367v2b.ju367v8o._12cbo8i3.ju367v8m._12cbo8i4._12cbo8i6 {
+  background: linear-gradient(to left, #f8cc82 50%, #e6e2c3 50%);
+  background-size: 200% 100%;
+  background-position: left;
+  animation: lightToOrange 0.88s linear;
+  animation-fill-mode: forwards;
+}
+.App-header.light
+  .iekbcc0.iekbcc9.ju367v73.ju367v7o.ju367v9c.ju367vn.ju367vec.ju367vex.ju367v11.ju367v1c.ju367v2b.ju367v8o._12cbo8i3.ju367v8m._12cbo8i4._12cbo8i6 {
+  background: linear-gradient(to right, #e6e2c3 50%, #f8cc82 50%);
+  background-size: 200% 100%;
+  background-position: right;
+  animation: orangeToLight 0.58s linear 1.42s;
+  animation-fill-mode: forwards;
 }
 /* ######################## Hardhat button ######################## */
 .App-header.orange
