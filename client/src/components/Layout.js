@@ -1,15 +1,17 @@
-import { Outlet, NavLink } from "react-router-dom";
 import "../styles/Layout.css";
+
+import { Outlet, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const Layout = ({ param, checked }) => {
   const [style, setStyle] = useState("orange");
 
+  useEffect(() => changeStyle());
+
   const changeStyle = () => {
     console.log("checked", checked);
     checked ? setStyle("light") : setStyle("orange");
   };
-  useEffect(() => changeStyle());
 
   console.log("Get param in layout", param);
   var urlParam;
