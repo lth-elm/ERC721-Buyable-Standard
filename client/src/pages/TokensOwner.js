@@ -117,8 +117,8 @@ export default function TokensOwner(props) {
             <button
               onClick={() => removeTokenSale(i + 1)}
               color="error"
-              startIcon={"X"}
-              /* <DeleteIcon /> */ sx={{ marginTop: "35px" }} // --> ADD A DELETE ICON HERE
+              /* startIcon={"X"}
+              <DeleteIcon /> */ sx={{ marginTop: "35px" }} // --> ADD A DELETE ICON HERE
             >
               Remove from sale
             </button>

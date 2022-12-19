@@ -63,6 +63,7 @@ export default function Collection(props) {
       <div className="Display">
         {tokenURIs.map((token, index) => (
           <div key={index}>
+            <h3>{token.name}</h3>
             {<DisplayTokens i={index} tokenURIs={tokenURIs} />}
           </div>
         ))}
