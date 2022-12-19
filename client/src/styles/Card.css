@@ -1,8 +1,8 @@
-.card {
+.nftCard {
   background-color: #f0e9d2;
   min-width: 200px;
   width: 250px;
-  height: 350px;
+  height: 360px;
   border-radius: 30px;
   display: flex;
   flex-direction: column;
@@ -10,16 +10,17 @@
   justify-content: space-between;
   padding: 10px 10px 20px 10px;
   margin-bottom: 10px;
+  margin: 10px 5px;
 }
-.card .card-header {
+.nftCard .nftCardHeader {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   border-radius: 30px;
-  gap: 24px;
+  gap: 20px;
 }
-.card .nft-container {
+.nftCard .nftCardContainer {
   background-color: #67898399;
   width: 95%;
   height: 196px;
@@ -30,13 +31,13 @@
   align-items: center;
   box-shadow: 0px 10px 4px 0px #00000080;
 }
-.card .nft-container img {
+.nftCard .nftCardContainer img {
   position: relative;
   top: 5px;
   z-index: 12;
   animation: floating 3s ease-out infinite;
 }
-.card .nft-container::after {
+.nftCard .nftCardContainer::after {
   position: relative;
   content: "";
   width: 82px;
@@ -65,14 +66,14 @@
     transform: scaleX(0.87);
   }
 }
-.card .title {
+.nftCard .name {
   width: fit-content;
-  font-size: 32px;
-  font-weight: bold;
+  font-size: 25px;
+  font-weight: 600;
   color: #2c2e37;
   align-self: flex-start;
 }
-.card button {
+.nftCard button {
   width: 100%;
   border: 3px solid #000000;
   border-radius: 15px;
@@ -80,17 +81,17 @@
 
   box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.5);
 }
-.card button.not_for_sale {
+.nftCard button.not_for_sale {
   background: #343434;
 
   color: white;
   cursor: not-allowed;
 }
-.card button.buy {
+.nftCard button.buy {
   background: #f8cc82;
   color: #2c2e37;
   cursor: pointer;
 }
-.card button.buy:active {
+.nftCard button.buy:active {
   box-shadow: 0px 10px 4px 0px #00000080 inset;
 }
