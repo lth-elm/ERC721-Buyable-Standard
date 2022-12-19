@@ -3,14 +3,14 @@ import "../styles/Card.css";
 
 export default function Card(props) {
   const { index, img, name, price, available, buyToken } = props;
-  console.log(img);
+
   return (
-    <div className="card">
-      <div className="card-header">
-        <div className="nft-container">
+    <div className="nftCard">
+      <div className="nftCardHeader">
+        <div className="nftCardContainer">
           <img src={img} alt={name}></img>
         </div>
-        <div className="title">{name}</div>
+        <div className="name">{name}</div>
       </div>
       <button
         className={available ? "buy" : "not_for_sale"}
