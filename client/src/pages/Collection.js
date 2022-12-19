@@ -1,4 +1,5 @@
 import { ethers } from "ethers";
+import Card from "../components/Card";
 
 export default function Collection(props) {
   const {
@@ -44,27 +45,14 @@ export default function Collection(props) {
   const DisplayTokens = ({ i, tokenURIs }) => {
     return (
       <div>
-        <img src={tokenURIs[i].image_data} alt={tokenURIs[i].name} />
-        {priceList[i] > 0 ? (
-          <div>
-            <button
-              onClick={() => buyToken(i + 1)}
-              variant="contained"
-              sx={{
-                background: "#66bb6a",
-                ":hover": { background: "#388e3c" },
-              }}
-            >
-              Buy for {priceList[i]} eth
-            </button>
-          </div>
-        ) : (
-          <div>
-            <button variant="contained" disabled>
-              Not for sale
-            </button>
-          </div>
-        )}
+        <Card
+          index={i + 1}
+          img={tokenURIs[i].image_data}
+          name={tokenURIs[i].name}
+          price={priceList[i]}
+          available={priceList[i] > 0}
+          buyToken={buyToken}
+        />
       </div>
     );
   };
