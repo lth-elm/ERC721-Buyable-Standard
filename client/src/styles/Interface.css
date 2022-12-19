@@ -1,0 +1,19 @@
+.Interface form input {
+  margin-bottom: 16px;
+  margin-right: 3px;
+  padding: 3px 10px;
+  border: none;
+  border-radius: 6px;
+  /* box-shadow: 0 4px 0 0 #f8cc82; */
+}
+.Interface form button {
+  margin-bottom: 16px;
+  margin-right: 3px;
+  padding: 3px 10px;
+  border: none;
+  border-radius: 6px;
+  background-color: #f8cc82;
+  color: #2c2e37;
+  font-weight: 600;
+  /* box-shadow: 0 4px 0 0 #f8cc82; */
+}
