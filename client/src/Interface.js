@@ -1,4 +1,8 @@
 import { useState, useEffect } from "react";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import Spinner from "react-bootstrap/Spinner";
+
 import { useAccount, useSigner } from "wagmi";
 import { ethers } from "ethers";
 import { Buffer } from "buffer";
@@ -164,59 +168,63 @@ export default function Interface({ checked }) {
     setFoundData(true);
   };
 
-  // const ConfirmDialog = () => {
-  //   return (
-  //     <Dialog open={true}>
-  //       <h3>
-  //         {mined && "Transaction Confirmed"}
-  //         {!mined && !showSign && "Confirming Your Transaction..."}
-  //         {!mined && showSign && "Please Sign to Confirm"}
-  //       </h3>
-  //       <div style={{ textAlign: "left", padding: "0px 20px 20px 20px" }}>
-  //         {mined && (
-  //           <div>
-  //             Your transaction has been confirmed and is on the blockchain.
-  //             <br />
-  //             <br />
-  //             <a
-  //               target="_blank"
-  //               rel="noreferrer"
-  //               href={`https://rinkeby.etherscan.io/tx/${transactionHash}`}
-  //             >
-  //               View on Etherscan
-  //             </a>
-  //           </div>
-  //         )}
-  //         {!mined && !showSign && (
-  //           <div>
-  //             <p>
-  //               Please wait while we confirm your transaction on the
-  //               blockchain....
-  //             </p>
-  //           </div>
-  //         )}
-  //         {!mined && showSign && (
-  //           <div>
-  //             <p>Please sign to confirm your transaction.</p>
-  //           </div>
-  //         )}
-  //       </div>
-  //       <div style={{ textAlign: "center", paddingBottom: "30px" }}>
-  //         {!mined && <CircularProgress />}
-  //       </div>
-  //       {mined && (
-  //         <Button
-  //           sx={{ background: "#F6FAFD", ":hover": { background: "#D8E6F1" } }}
-  //           onClick={() => {
-  //             setShowDialog(false);
-  //           }}
-  //         >
-  //           Close
-  //         </Button>
-  //       )}
-  //     </Dialog>
-  //   );
-  // };
+  function ConfirmDialog() {
+    const handleClose = () => clearTransactionDialog();
+
+    return (
+      <Modal show={true} onHide={handleClose} backdrop="static" keyboard={false} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            {mined && "Transaction Confirmed"}
+            {!mined && !showSign && "Confirming Your Transaction..."}
+            {!mined && showSign && "Please Sign to Confirm"}
+          </Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <div style={{ textAlign: "left", padding: "0px 20px 20px 20px" }}>
+            {mined && (
+              <div>
+                Your transaction has been confirmed and is on the blockchain.
+                <br />
+                <br />
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href={`https://polygonscan.com/tx/${transactionHash}`}
+                >
+                  View on Polygonscan
+                </a>
+              </div>
+            )}
+            {!mined && !showSign && (
+              <div>
+                <p>Please wait while we confirm your transaction on the blockchain....</p>
+              </div>
+            )}
+            {!mined && showSign && (
+              <div>
+                <p>Please sign to confirm your transaction.</p>
+              </div>
+            )}
+          </div>
+          <div style={{ textAlign: "center", paddingBottom: "30px" }}>
+            {!mined && (
+              <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </Spinner>
+            )}
+          </div>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button className="CloseModal" variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
 
   const clearTransactionDialog = () => {
     setShowDialog(false);
@@ -352,6 +360,8 @@ export default function Interface({ checked }) {
           </Routes>
         )}
       </div>
+
+      {showDialog && <ConfirmDialog />}
     </div>
   );
 }
