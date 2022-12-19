@@ -1,9 +1,11 @@
 .Display {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
 }
 
-.Display img {
+/* .Display img {
   height: 300px;
   width: 300px;
-}
+} */

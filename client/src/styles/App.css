@@ -37,7 +37,7 @@ header h1 {
 }
 /* ######################## title to orange ######################## */
 .toOrange {
-  background-color:#e6e2c3;
+  background-color: #e6e2c3;
   background-clip: text;
   color: #e6e2c3;
   display: block;
@@ -52,7 +52,7 @@ header h1 {
   }
   100% {
     width: 250px;
-    color:transparent;
+    color: transparent;
   }
 }
 
@@ -70,7 +70,7 @@ header h1 {
 @keyframes toLight {
   0% {
     width: 0;
-    color:#f8cc82 ;
+    color: #f8cc82;
   }
   100% {
     width: 250px;
@@ -87,7 +87,7 @@ header h1 {
 }
 .App-header.light
   .iekbcc0.iekbcc9.ju367v71.ju367v7m.ju367v86.ju367v6f.ju367v4.ju367v9x.ju367vn.ju367vec.ju367vfo.ju367vb.ju367va.ju367v11.ju367v1c.ju367v1k.ju367v8o._12cbo8i3.ju367v8m._12cbo8i4._12cbo8i6 {
-  background: linear-gradient(to right, #e6e2c3 50%,  #f8cc82 50%);
+  background: linear-gradient(to right, #e6e2c3 50%, #f8cc82 50%);
   background-size: 200% 100%;
   background-position: right;
   animation: orangeToLight 0.42s linear 1s;
@@ -107,19 +107,19 @@ header h1 {
 /* ######################## address button ######################## */
 .App-header.orange
   .iekbcc0.ju367v70.ju367v7l.ju367v85.ju367v6e.ju367va3.ju367vcf.ju367vn.ju367vt.ju367vw.ju367vfo.ju367v11.ju367v1c.ju367v8o {
-    background: linear-gradient(to left, #f8cc82 50%, #e6e2c3 50%);
-    background-size: 200% 100%;
-    background-position: left;
-    animation: lightToOrange 0.58s linear;
-    animation-fill-mode: forwards;
+  background: linear-gradient(to left, #f8cc82 50%, #e6e2c3 50%);
+  background-size: 200% 100%;
+  background-position: left;
+  animation: lightToOrange 0.58s linear;
+  animation-fill-mode: forwards;
 }
 .App-header.light
   .iekbcc0.ju367v70.ju367v7l.ju367v85.ju367v6e.ju367va3.ju367vcf.ju367vn.ju367vt.ju367vw.ju367vfo.ju367v11.ju367v1c.ju367v8o {
-    background: linear-gradient(to right, #e6e2c3 50%,  #f8cc82 50%);
-    background-size: 200% 100%;
-    background-position: right;
-    animation: orangeToLight 0.58s linear 1.42s;
-    animation-fill-mode: forwards;
+  background: linear-gradient(to right, #e6e2c3 50%, #f8cc82 50%);
+  background-size: 200% 100%;
+  background-position: right;
+  animation: orangeToLight 0.58s linear 1.42s;
+  animation-fill-mode: forwards;
 }
 
 /* ######################## address button text ######################## */
@@ -136,10 +136,8 @@ header h1 {
 .App-header.orange
   .iekbcc0.ju367v86.ju367v6f.ju367v72.ju367v7l.ju367v9.ju367v6 {
   color: #f8cc82;
-  
 }
-.App-header.light 
-  .iekbcc0.ju367v86.ju367v6f.ju367v72.ju367v7l.ju367v9.ju367v6 {
+.App-header.light .iekbcc0.ju367v86.ju367v6f.ju367v72.ju367v7l.ju367v9.ju367v6 {
   color: #e6e2c3;
 }
 
