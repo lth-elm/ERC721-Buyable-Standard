@@ -8,7 +8,7 @@
   /* background-color: blue; */
   gap: 10px;
   border-bottom: solid 2px white;
-  padding: 5px;
+  padding: 5.5px;
 }
 .navbar li a {
   position: relative;
@@ -110,7 +110,7 @@
 }
 
 .Layout {
-  flex-grow: 9;
+  flex: 1 1 auto;
   border-right: 1px solid white;
 }
 .info-container {
@@ -119,7 +119,7 @@
   align-items: flex-start;
   /* padding: 0 5px; */
   border-left: 1px solid white;
-  flex-grow: 1;
+  flex: 0 1 235px;
 }
 .info-title {
   width: 100%;
@@ -128,6 +128,7 @@
   border-bottom: solid 2px white;
 }
 .info-title h2 {
+  font-size: 1.5em;
   float: left;
   margin: 8px;
 }
