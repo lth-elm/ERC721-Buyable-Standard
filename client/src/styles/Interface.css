@@ -4,7 +4,6 @@
   padding: 3px 10px;
   border: none;
   border-radius: 6px;
-  /* box-shadow: 0 4px 0 0 #f8cc82; */
 }
 .Interface form button {
   margin-bottom: 16px;
@@ -12,8 +11,21 @@
   padding: 3px 10px;
   border: none;
   border-radius: 6px;
-  background-color: #f8cc82;
   color: #2c2e37;
   font-weight: 600;
-  /* box-shadow: 0 4px 0 0 #f8cc82; */
+}
+/* ######################## address button ######################## */
+.Interface form button.orange {
+  background: linear-gradient(to left, #f8cc82 50%, #e6e2c3 50%);
+  background-size: 200% 100%;
+  background-position: left;
+  animation: lightToOrange 0.58s linear;
+  animation-fill-mode: forwards;
+}
+.Interface form button.light {
+  background: linear-gradient(to right, #e6e2c3 50%, #f8cc82 50%);
+  background-size: 200% 100%;
+  background-position: right;
+  animation: orangeToLight 0.58s linear;
+  animation-fill-mode: forwards;
 }

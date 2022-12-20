@@ -251,16 +251,9 @@ export default function Interface({ checked }) {
           placeholder={contractAddress}
           // onInput={(e) => setContractAddress(e.target.value)}
         />
-        <button className="find" onClick={(e) => updateURL(e)}>
+        <button className={`find ${checked ? "light" : "orange"}`} onClick={(e) => updateURL(e)}>
           Find Collection
         </button>
-        {/* <button
-          onClick={(e) => {
-            checkContractData(e);
-          }}
-        >
-          Find Collection
-        </button> */}
       </form>
       <p>
         Contract support ERC721 Buyable interface :{" "}
