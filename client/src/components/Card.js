@@ -25,6 +25,7 @@ export default function Card(props) {
         <button
           className={available ? "buy" : "not_for_sale"}
           onClick={() => buyToken(index)}
+          disabled={!available}
         >
           {available ? `${price} ETH | Buy` : "Not for sale"}
         </button>
