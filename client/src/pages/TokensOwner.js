@@ -88,73 +88,15 @@ export default function TokensOwner(props) {
     return (
       <div>
         <Card
-          index={i}
+          index={i + 1}
           img={tokenURIs[i].image_data}
           name={tokenURIs[i].name}
           price={priceList[i]}
           available={priceList[i] > 0}
+          buyToken={null}
+          setPrice={setPrice}
+          removeTokenSale={removeTokenSale}
         />
-        <img src={tokenURIs[i].image_data} alt={tokenURIs[i].name} />
-        {priceList[i] > 0 ? (
-          <div>
-            <div>
-              <input
-                type="number"
-                id={"setNewPrice" + i}
-                placeholder={("Currently " + priceList[i]).toString() + " ETH"}
-                step="0.01"
-                min="0"
-              />
-              <button
-                onClick={() =>
-                  setPrice(
-                    i + 1,
-                    document.getElementById("setNewPrice" + i).value
-                  )
-                }
-                variant="contained"
-                sx={{
-                  marginLeft: "10px",
-                  background: "#2167E5",
-                  ":hover": { background: "#073C9C" },
-                }}
-              >
-                Update selling price
-              </button>
-            </div>
-            <button
-              onClick={() => removeTokenSale(i + 1)}
-              color="error"
-              /* startIcon={"X"}
-              <DeleteIcon /> */ sx={{ marginTop: "35px" }} // --> ADD A DELETE ICON HERE
-            >
-              Remove from sale
-            </button>
-          </div>
-        ) : (
-          <div>
-            <input
-              type="number"
-              id={"setPrice" + i}
-              placeholder="Price in ETH"
-              step="0.01"
-              min="0"
-            />
-            <button
-              onClick={() =>
-                setPrice(i + 1, document.getElementById("setPrice" + i).value)
-              }
-              variant="contained"
-              sx={{
-                marginLeft: "10px",
-                background: "#66bb6a",
-                ":hover": { background: "#388e3c" },
-              }}
-            >
-              Add to sale
-            </button>
-          </div>
-        )}
       </div>
     );
   };
@@ -164,10 +106,7 @@ export default function TokensOwner(props) {
       <h1>Tokens Owner</h1>
       <div className="Display">
         {tokenOwned.map((id, index) => (
-          <div key={index}>
-            <h3>{tokenURIs[id - 1].name}</h3>
-            {<DisplayMyTokens i={id - 1} />}
-          </div>
+          <div key={index}>{<DisplayMyTokens i={id - 1} />}</div>
         ))}
       </div>
     </div>
