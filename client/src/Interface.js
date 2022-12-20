@@ -147,11 +147,9 @@ export default function Interface({ checked }) {
       }
     }
     setPriceList(prices);
-    // console.log("NFT prices", prices);
     setTokenOwned(owned);
     console.log("Connected address owns following:", owned);
     setTokenURIs(uris);
-    // console.log("URIs", uris);
 
     setDescription(uris[0].description);
     console.log("NFTs description:", uris[0].description);
@@ -245,12 +243,7 @@ export default function Interface({ checked }) {
     <div className="Interface">
       <form>
         <label>Contract address&nbsp;</label>
-        <input
-          type="text"
-          id={"newAddress"}
-          placeholder={contractAddress}
-          // onInput={(e) => setContractAddress(e.target.value)}
-        />
+        <input type="text" id={"newAddress"} placeholder={contractAddress} />
         <button className={`find ${checked ? "light" : "orange"}`} onClick={(e) => updateURL(e)}>
           Find Collection
         </button>
