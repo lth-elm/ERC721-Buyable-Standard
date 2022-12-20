@@ -1,0 +1,233 @@
+#root {
+  background-color: #181d31;
+}
+
+.App {
+  background-color: #181d31;
+  text-align: center;
+  min-height: 100vh;
+  color: white;
+}
+.App.preload {
+  animation-duration: 0s !important;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+header h1 {
+  text-align: start;
+  /* color: #ead8b8; */
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.App-header {
+  padding: 0px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-right {
+  display: flex;
+  align-items: center;
+}
+/* ######################## title to orange ######################## */
+.toOrange {
+  background-color: #e6e2c3;
+  background-clip: text;
+  color: #e6e2c3;
+  display: block;
+  width: 0px;
+  animation: toOrange 1s linear 1s reverse forwards;
+  white-space: nowrap;
+}
+@keyframes toOrange {
+  0% {
+    width: 0px;
+    color: #f8cc82;
+  }
+  100% {
+    width: 250px;
+    color: transparent;
+  }
+}
+
+/* ######################## title to light ######################## */
+.toLight {
+  background-color: #e6e2c3;
+  background-clip: text;
+  color: transparent;
+  display: block;
+  width: 350px;
+  animation: toLight 1s linear forwards;
+  white-space: nowrap;
+}
+
+@keyframes toLight {
+  0% {
+    width: 0;
+    color: #f8cc82;
+  }
+  100% {
+    width: 350px;
+  }
+}
+
+/* ######################## Connect wallet button ######################## */
+.App-header.orange
+  .iekbcc0.iekbcc9.ju367v73.ju367v7o.ju367v9c.ju367vn.ju367vec.ju367vex.ju367v11.ju367v1c.ju367v2b.ju367v8o._12cbo8i3.ju367v8m._12cbo8i4._12cbo8i6 {
+  background: linear-gradient(to left, #f8cc82 50%, #e6e2c3 50%);
+  background-size: 200% 100%;
+  background-position: left;
+  animation: lightToOrange 0.88s linear;
+  animation-fill-mode: forwards;
+}
+.App-header.light
+  .iekbcc0.iekbcc9.ju367v73.ju367v7o.ju367v9c.ju367vn.ju367vec.ju367vex.ju367v11.ju367v1c.ju367v2b.ju367v8o._12cbo8i3.ju367v8m._12cbo8i4._12cbo8i6 {
+  background: linear-gradient(to right, #e6e2c3 50%, #f8cc82 50%);
+  background-size: 200% 100%;
+  background-position: right;
+  animation: orangeToLight 0.58s linear 1.42s;
+  animation-fill-mode: forwards;
+}
+/* ######################## Hardhat button ######################## */
+.App-header.orange
+  .iekbcc0.iekbcc9.ju367v71.ju367v7m.ju367v86.ju367v6f.ju367v4.ju367v9x.ju367vn.ju367vec.ju367vfo.ju367vb.ju367va.ju367v11.ju367v1c.ju367v1k.ju367v8o._12cbo8i3.ju367v8m._12cbo8i4._12cbo8i6 {
+  background: linear-gradient(to left, #f8cc82 50%, #e6e2c3 50%);
+  background-size: 200% 100%;
+  background-position: left;
+  animation: lightToOrange 0.42s linear 0.58s;
+  animation-fill-mode: forwards;
+}
+.App-header.light
+  .iekbcc0.iekbcc9.ju367v71.ju367v7m.ju367v86.ju367v6f.ju367v4.ju367v9x.ju367vn.ju367vec.ju367vfo.ju367vb.ju367va.ju367v11.ju367v1c.ju367v1k.ju367v8o._12cbo8i3.ju367v8m._12cbo8i4._12cbo8i6 {
+  background: linear-gradient(to right, #e6e2c3 50%, #f8cc82 50%);
+  background-size: 200% 100%;
+  background-position: right;
+  animation: orangeToLight 0.42s linear 1s;
+  animation-fill-mode: forwards;
+}
+@keyframes lightToOrange {
+  100% {
+    background-position: right;
+  }
+}
+@keyframes orangeToLight {
+  100% {
+    background-position: left;
+  }
+}
+
+/* ######################## address button ######################## */
+.App-header.orange
+  .iekbcc0.ju367v70.ju367v7l.ju367v85.ju367v6e.ju367va3.ju367vcf.ju367vn.ju367vt.ju367vw.ju367vfo.ju367v11.ju367v1c.ju367v8o {
+  background: linear-gradient(to left, #f8cc82 50%, #e6e2c3 50%);
+  background-size: 200% 100%;
+  background-position: left;
+  animation: lightToOrange 0.58s linear;
+  animation-fill-mode: forwards;
+}
+.App-header.light
+  .iekbcc0.ju367v70.ju367v7l.ju367v85.ju367v6e.ju367va3.ju367vcf.ju367vn.ju367vt.ju367vw.ju367vfo.ju367v11.ju367v1c.ju367v8o {
+  background: linear-gradient(to right, #e6e2c3 50%, #f8cc82 50%);
+  background-size: 200% 100%;
+  background-position: right;
+  animation: orangeToLight 0.58s linear 1.42s;
+  animation-fill-mode: forwards;
+}
+
+/* ######################## address button text ######################## */
+.App-header .iekbcc0.ju367v8 {
+  color: #2c2e37;
+}
+
+/* ######################## hardhat and value text ######################## */
+.App-header .iekbcc0.ju367v9.ju367v6 {
+  color: #2c2e37;
+}
+
+/* ######################## value ######################## */
+.App-header.orange
+  .iekbcc0.ju367v86.ju367v6f.ju367v72.ju367v7l.ju367v9.ju367v6 {
+  color: #f8cc82;
+}
+.App-header.light .iekbcc0.ju367v86.ju367v6f.ju367v72.ju367v7l.ju367v9.ju367v6 {
+  color: #e6e2c3;
+}
+
+.App-header svg {
+  color: #2c2e37;
+}
+
+/* ######################## value background color ######################## */
+.App-header
+  .iekbcc0.iekbcc9.ju367v4.ju367v9x.ju367vn.ju367vec.ju367vfo.ju367va.ju367v11.ju367v1c.ju367v8o._12cbo8i3.ju367v8m._12cbo8i4._12cbo8i6 {
+  background: #2c2e37;
+}
+
+/* ######################## connect wallet button ######################## */
+.App-header.orange
+  .iekbcc0.iekbcc9.ju367v73.ju367v7o.ju367v9c.ju367vn.ju367vec.ju367vex.ju367v11.ju367v1c.ju367v2b.ju367v8o._12cbo8i3.ju367v8m._12cbo8i4._12cbo8i6 {
+  background-color: #f8cc82;
+  color: #2c2e37;
+}
+.App-header.light
+  .iekbcc0.iekbcc9.ju367v73.ju367v7o.ju367v9c.ju367vn.ju367vec.ju367vex.ju367v11.ju367v1c.ju367v2b.ju367v8o._12cbo8i3.ju367v8m._12cbo8i4._12cbo8i6 {
+  background-color: #e6e2c3;
+  color: #2c2e37;
+}
+
+/* ######################## toggle ######################## */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-right: 10px;
+}
+.switch input {
+  display: none;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #2c2e37;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #f8cc82;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+input:checked + .slider::before {
+  background-color: #e6e2c3;
+}
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+.slider.round {
+  border-radius: 34px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}

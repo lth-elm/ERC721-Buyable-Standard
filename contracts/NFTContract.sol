@@ -18,14 +18,14 @@ contract NFTContract is ERC721Buyable {
         uint256 level;
     }
 
-    constructor() ERC721("NFTContract", "NFTC") {}
+    constructor() ERC721("ETH Stones", "ETHS") {}
 
     function mint() external returns (uint256) {
         require(supply.current() < 3, "Max supply exceeded");
         supply.increment();
 
         attributes[supply.current()] = Attr(
-            string(abi.encodePacked("ETH NFT #", supply.current().toString())),
+            string(abi.encodePacked("ETH Stone #", supply.current().toString())),
             supply.current()
         );
 
@@ -49,7 +49,7 @@ contract NFTContract is ERC721Buyable {
                 bytes(
                     string(
                         abi.encodePacked(
-                            "<svg xmlns='http://www.w3.org/2000/svg' height='100%' width='100%' preserveAspectRatio='xMidYMid' viewBox='-38.39985 -104.22675 332.7987 625.3605'><path fill='#343434' d='M125.166 285.168l2.795 2.79 127.962-75.638L127.961 0l-2.795 9.5z'/><path fill='#8C8C8C' d='M127.962 287.959V0L0 212.32z'/><path fill='#3C3C3B' d='M126.386 412.306l1.575 4.6L256 236.587l-128.038 75.6-1.575 1.92z'/><path fill='#8C8C8C' d='M0 236.585l127.962 180.32v-104.72z'/><path fill='#141414' d='M127.961 154.159v133.799l127.96-75.637z'/><path fill='#393939' d='M127.96 154.159L0 212.32l127.96 75.637z'/></svg>"
+                        '<svg width="80" height="134" viewBox="0 0 80 134" fill="none" xmlns="http://www.w3.org/2000/svg"><g fill-rule="evenodd" clip-rule="evenodd"><path d="m39.932 100.966 40.024-25.122-40.024 57.823v-32.701Zm5.952 3.269v10.449L58.7 96.174l-12.816 8.061Z" fill="#5A9DED"/><path d="M44.028 48.775 73.575 65.49l-2.915 5.152-29.546-16.717 2.914-5.151Z" fill="#D895D3"/><path d="M39.932.333 79.821 68.99 39.932 94.147V.333Zm5.882 21.972v61.174l26.052-16.43-26.052-44.744Z" fill="#FF9C92"/><path d="M40.068 100.966.044 75.844l40.024 57.823v-32.701Zm-5.952 3.269v10.449L21.3 96.174l12.816 8.061Z" fill="#53D3E0"/><path d="M34.727 49.333 5.181 66.049 8.095 71.2l29.547-16.716-2.915-5.151Z" fill="#A6E275"/><path d="M39.932.333.044 68.99l39.888 25.158V.333ZM34.05 22.305v61.174L7.999 67.05 34.05 22.305Z" fill="#FFE94D"/></g></svg>'
                         )
                     )
                 )
@@ -60,7 +60,7 @@ contract NFTContract is ERC721Buyable {
                 bytes(
                     string(
                         abi.encodePacked(
-                            "<svg xmlns='http://www.w3.org/2000/svg' height='100%' width='100%' viewBox='-161.97 -439.65 1403.74 2637.9'><path fill='#8A92B2' d='M539.7 650.3V0L0 895.6z'/><path fill='#62688F' d='M539.7 1214.7V650.3L0 895.6zm0-564.4l539.8 245.3L539.7 0z'/><path fill='#454A75' d='M539.7 650.3v564.4l539.8-319.1z'/><path fill='#8A92B2' d='M539.7 1316.9L0 998l539.7 760.6z'/><path fill='#62688F' d='M1079.8 998l-540.1 318.9v441.7z'/></svg>"
+                        '<svg width="82" height="134" viewBox="0 0 82 134" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m40.094 91.534.894.893 40.924-24.19L40.988.333l-.894 3.039v88.162Z" fill="#343434"/><path d="M40.988 92.427V.333L.064 68.237l40.924 24.19Z" fill="#8C8C8C"/><path d="m40.484 132.195.504 1.471 40.948-57.668-40.948 24.178-.504.614v31.405Z" fill="#3C3C3B"/><path d="m.064 75.997 40.924 57.669v-33.491L.064 75.997Z" fill="#8C8C8C"/><path d="M40.988 49.636v42.79l40.923-24.19-40.923-18.6Z" fill="#141414"/><path d="M40.987 49.636.064 68.236l40.923 24.19v-42.79Z" fill="#393939"/></svg>'
                         )
                     )
                 )
@@ -71,7 +71,7 @@ contract NFTContract is ERC721Buyable {
                 bytes(
                     string(
                         abi.encodePacked(
-                            "<svg xmlns='http://www.w3.org/2000/svg' height='100%' width='100%' viewBox='-107.3421 -298.5 930.2982 1791'><g fill-rule='evenodd' fill='none'><path fill='#5A9DED' d='M357.2 901.161l358.414-224.965L357.2 1194zm53.295 29.281v93.57L525.27 858.259z'/><path fill='#D895D3' d='M393.88 433.792L658.468 583.49l-26.098 46.129-264.588-149.697z'/><path fill='#FF9C92' d='M357.2 0l357.2 614.809-357.2 225.29zm52.675 196.753v547.82l233.291-147.14z'/><path fill='#53D3E0' d='M358.414 901.161L0 676.196 358.414 1194zm-53.295 29.281v93.57L190.345 858.259z'/><path fill='#A6E275' d='M310.588 438.79L46 588.487l26.1 46.129 264.588-149.697z'/><path fill='#FFE94D' d='M357.2 0L0 614.809l357.2 225.29zm-52.675 196.753v547.82L71.234 597.434z'/></g></svg>"
+                        '<svg width="82" height="134" viewBox="0 0 82 134" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M40.985 49.638V.333L.065 68.236l40.92-18.598Z" fill="#8A92B2"/><path d="M40.985 92.43V49.637L.065 68.236l40.92 24.193Zm0-42.792L81.91 68.236 40.985.333v49.305Z" fill="#62688F"/><path d="M40.985 49.638v42.791L81.91 68.236 40.985 49.638Z" fill="#454A75"/><path d="M40.985 100.178.065 76l40.92 57.667v-33.489Z" fill="#8A92B2"/><path d="m81.934 76-40.95 24.178v33.489L81.935 76Z" fill="#62688F"/></svg>'
                         )
                     )
                 )
@@ -96,7 +96,7 @@ contract NFTContract is ERC721Buyable {
                         '{"name": "',
                         attributes[_tokenId].name,
                         '",',
-                        '"description": "ETH Stones",',
+                        '"description": "ETH Stones for demonstration purpose",',
                         '"image_data": "',
                         getSvg(_tokenId),
                         '",',

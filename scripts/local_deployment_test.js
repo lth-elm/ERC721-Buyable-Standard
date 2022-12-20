@@ -12,16 +12,14 @@ async function main() {
   await contract.deployed();
   console.log("Contract deployed to:", contract.address);
 
-  const NONBuyableContract = await hre.ethers.getContractFactory(
-    "NFTContractNONBuyable"
-  );
+  const NONBuyableContract = await hre.ethers.getContractFactory("NFTContractNONBuyable");
   const nonBuyableContract = await NONBuyableContract.deploy();
   await nonBuyableContract.deployed();
   console.log("NON Buyable Contract deployed to:", nonBuyableContract.address);
 
-  // await contract.mint();
-  // await contract.mint();
-  // await contract.mint();
+  await contract.mint();
+  await contract.mint();
+  await contract.mint();
 }
 
 // We recommend this pattern to be able to use async/await everywhere
