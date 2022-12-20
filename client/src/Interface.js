@@ -74,29 +74,23 @@ export default function Interface({ checked }) {
     setFoundData(false);
   };
 
-  const checkContractData = async (e) => {
-    if (e) {
-      e.preventDefault();
-    }
-
+  const checkContractData = async (urlAddress) => {
     let support = false;
 
     const urlContractAddressParam = searchParams.get("contractAddress");
-    if (urlContractAddressParam) {
+    if (urlContractAddressParam && !urlAddress) {
       setContractAddress(urlContractAddressParam);
       setFoundUrlParam(true);
     }
 
-    const getContractAddress = urlContractAddressParam
+    const getContractAddress = urlAddress
+      ? urlAddress
+      : urlContractAddressParam
       ? urlContractAddressParam
       : contractAddress;
 
     try {
-      const contract = new ethers.Contract(
-        getContractAddress,
-        contractABI,
-        signer
-      );
+      const contract = new ethers.Contract(getContractAddress, contractABI, signer);
       console.log("NFT Contract", contract);
       setNFTContract(contract);
 
@@ -120,11 +114,7 @@ export default function Interface({ checked }) {
   };
 
   const getContractData = async (getContractAddress) => {
-    const contract = new ethers.Contract(
-      getContractAddress,
-      contractABI,
-      signer
-    );
+    const contract = new ethers.Contract(getContractAddress, contractABI, signer);
 
     setName(await contract.name());
     setSymbol(await contract.symbol());
@@ -184,13 +174,7 @@ export default function Interface({ checked }) {
     const handleClose = () => clearTransactionDialog();
 
     return (
-      <Modal
-        show={true}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-        centered
-      >
+      <Modal show={true} onHide={handleClose} backdrop="static" keyboard={false} centered>
         <Modal.Header closeButton>
           <Modal.Title>
             {mined && "Transaction Confirmed"}
@@ -217,10 +201,7 @@ export default function Interface({ checked }) {
             )}
             {!mined && !showSign && (
               <div>
-                <p>
-                  Please wait while we confirm your transaction on the
-                  blockchain....
-                </p>
+                <p>Please wait while we confirm your transaction on the blockchain....</p>
               </div>
             )}
             {!mined && showSign && (
@@ -239,11 +220,7 @@ export default function Interface({ checked }) {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button
-            className="CloseModal"
-            variant="secondary"
-            onClick={handleClose}
-          >
+          <Button className="CloseModal" variant="secondary" onClick={handleClose}>
             Close
           </Button>
         </Modal.Footer>
@@ -260,11 +237,8 @@ export default function Interface({ checked }) {
 
   const updateURL = (e) => {
     e.preventDefault();
-    navigate(
-      `/?contractAddress=${document.getElementById("newAddress").value}`,
-      { replace: true }
-    );
-    checkContractData(e);
+    navigate(`/?contractAddress=${document.getElementById("newAddress").value}`, { replace: true });
+    checkContractData(document.getElementById("newAddress").value);
   };
 
   return (
@@ -277,7 +251,9 @@ export default function Interface({ checked }) {
           placeholder={contractAddress}
           // onInput={(e) => setContractAddress(e.target.value)}
         />
-        <button onClick={(e) => updateURL(e)}>Find Collection</button>
+        <button className="find" onClick={(e) => updateURL(e)}>
+          Find Collection
+        </button>
         {/* <button
           onClick={(e) => {
             checkContractData(e);
@@ -355,12 +331,7 @@ export default function Interface({ checked }) {
           <Routes>
             <Route
               path="/"
-              element={
-                <Layout
-                  param={{ contractAddress, foundUrlParam }}
-                  checked={checked}
-                />
-              }
+              element={<Layout param={{ contractAddress, foundUrlParam }} checked={checked} />}
             >
               <Route
                 index
