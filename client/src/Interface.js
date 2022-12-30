@@ -27,10 +27,10 @@ export default function Interface({ checked }) {
   const [searchParams] = useSearchParams();
   const [foundUrlParam, setFoundUrlParam] = useState(false);
 
-  // Test a NON ERC721 Buyable : "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
-  // Test a VALID ERC721 Buyable : "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+  // Test a NON ERC721 Buyable on Goerli : "0xEcCe541807736B7b18E492D0Bdc1B41603Ea390E"
+  // Test a VALID ERC721 Buyable on Goerli : "0xCbC992cfdb157B3a6880e78c23705e36C99D1CB8"
   const [contractAddress, setContractAddress] = useState(
-    "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+    "0xCbC992cfdb157B3a6880e78c23705e36C99D1CB8"
   );
 
   const [nftContract, setNFTContract] = useState();
@@ -191,9 +191,9 @@ export default function Interface({ checked }) {
                 <a
                   target="_blank"
                   rel="noreferrer"
-                  href={`https://polygonscan.com/tx/${transactionHash}`}
+                  href={`https://goerli.etherscan.io/tx/${transactionHash}`}
                 >
-                  View on Polygonscan
+                  View on Etherscan
                 </a>
               </div>
             )}

@@ -19,7 +19,20 @@ import { chain, useAccount, configureChains, createClient, WagmiConfig } from "w
 import { publicProvider } from "wagmi/providers/public";
 
 const { chains, provider } = configureChains(
-  [chain.hardhat, chain.goerli], // [chain.mainnet, chain.goerli, chain.sepolia, chain.polygon, chain.polygonMumbai, chain.optimism, chain.optimismGoerli, chain.arbitrum, chain.arbitrumGoerli, chain.localhost, chain.hardhat, chain.foundry]
+  [
+    chain.goerli,
+    chain.mainnet,
+    chain.sepolia,
+    chain.polygon,
+    chain.polygonMumbai,
+    chain.optimism,
+    chain.optimismGoerli,
+    chain.arbitrum,
+    chain.arbitrumGoerli,
+    chain.hardhat,
+    chain.foundry,
+    chain.localhost,
+  ],
   [publicProvider()]
 );
 const { connectors } = getDefaultWallets({
