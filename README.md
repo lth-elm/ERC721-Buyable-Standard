@@ -51,7 +51,7 @@ To deploy on a testnet like _goerli_ you need to write the following command `np
 For that you wil need to fill a [.env]() file with an api url key and a private key.
 
 ```sh
-API_URL="https://eth-goerli.alchemyapi.io/v2/XXXXXXX"
+API_URL="https://eth-goerli.g.alchemy.com/XXXXX"
 PRIVATE_KEY="0xXXX...XXX"
 ```
 
@@ -61,18 +61,15 @@ PRIVATE_KEY="0xXXX...XXX"
 Now [hardhat.config.js](hardhat.config.js) should have these lines where it imports the _.env_ variables. The `module.exports` is best set as follow with your solidity version compiler.
 
 ```js
+require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
-const API_URL = process.env.API_URL;
-const PRIVATE_KEY = process.env.PRIVATE_KEY;
+
+const ETHERSCAN_KEY = process.env.ETHERSCAN_KEY;
+
+const GOERLI_API_URL = process.env.GOERLI_API_URL;
+const GOERLI_PRIVATE_KEY = process.env.GOERLI_PRIVATE_KEY;
 
 module.exports = {
-  networks: {
-    hardhat: {},
-    goerli: {
-      url: API_URL,
-      accounts: [PRIVATE_KEY],
-    },
-  },
   solidity: {
     version: "0.8.17",
     settings: {
@@ -82,7 +79,21 @@ module.exports = {
       },
     },
   },
+  networks: {
+    hardhat: {},
+    goerli: {
+      url: GOERLI_API_URL,
+      accounts: [GOERLI_PRIVATE_KEY],
+    },
+  },
+  etherscan: {
+    apiKey: ETHERSCAN_KEY,
+  },
+  // paths: {
+  //   artifacts: './client/src/artifacts'
+  // },
   gasReporter: {
+    enabled: true,
     currency: "USD",
     gasPrice: 21,
   },
