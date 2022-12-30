@@ -7,17 +7,33 @@
 const hre = require("hardhat");
 
 async function main() {
+  const WAIT_BLOCK_CONFIRMATIONS = 6;
+
   const Contract = await hre.ethers.getContractFactory("NFTContract");
   const contract = await Contract.deploy();
-  await contract.deployed();
-  console.log("Contract deployed to:", contract.address);
+  await contract.deployTransaction.wait(WAIT_BLOCK_CONFIRMATIONS);
+  console.log(`ERC721Buyable Contract deployed to ${contract.address} on ${network.name}`);
 
-  const NONBuyableContract = await hre.ethers.getContractFactory(
-    "NFTContractNONBuyable"
-  );
+  console.log("Verifying contract...");
+  await hre.run(`verify:verify`, {
+    address: contract.address,
+    constructorArguments: [],
+    contract: "contracts/NFTContract.sol:NFTContract",
+  });
+
+  console.log();
+
+  const NONBuyableContract = await hre.ethers.getContractFactory("NFTContractNONBuyable");
   const nonBuyableContract = await NONBuyableContract.deploy();
-  await nonBuyableContract.deployed();
-  console.log("NON Buyable Contract deployed to:", nonBuyableContract.address);
+  await nonBuyableContract.deployTransaction.wait(WAIT_BLOCK_CONFIRMATIONS);
+  console.log(`NON Buyable contract deployed to ${nonBuyableContract.address} on ${network.name}`);
+
+  console.log("Verifying non buyable contract...");
+  await hre.run(`verify:verify`, {
+    address: nonBuyableContract.address,
+    constructorArguments: [],
+    contract: "contracts/NFTContractNONBuyable.sol:NFTContractNONBuyable",
+  });
 
   // await contract.mint();
   // await contract.mint();
