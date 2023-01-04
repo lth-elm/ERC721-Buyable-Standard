@@ -1,5 +1,7 @@
 To understand the use of this repository please read **[EIP-ERC721Buyable.md](EIP-ERC721Buyable.md)**. The main solidity files are [ERC721Buyable.sol](./contracts/ERC721Buyable.sol) and its interface [IERC721Buyable.sol](./contracts/interfaces/IERC721Buyable.sol), the other contracts are here for tests and integration demonstration.
 
+---
+
 1. [Presentation](#presentation)
 2. [Installation Guide](#guide)
    1. [Dependencies](#dependencies)
