@@ -1,3 +1,5 @@
+To understand the use of this repository please read **[EIP-ERC721Buyable.md](EIP-ERC721Buyable.md)**. The main solidity files are [ERC721Buyable.sol](./contracts/ERC721Buyable.sol) and its interface [IERC721Buyable.sol](./contracts/interfaces/IERC721Buyable.sol), the other contracts are here for tests and integration demonstration.
+
 1. [Presentation](#presentation)
 2. [Installation Guide](#guide)
    1. [Dependencies](#dependencies)
@@ -5,12 +7,9 @@
    3. [Deployment](#deployment)
       1. [Locally](#locally)
       2. [Testnet](#testnet)
+3. [Dapp](#dapp)
 
 # Presentation <a name="presentation"></a>
-
-To understand what is the purpose of this repository please read **[EIP-ERC721Buyable.md](EIP-ERC721Buyable.md)**. The main solidity files are [ERC721Buyable.sol](./contracts/ERC721Buyable.sol) and its interface [IERC721Buyable.sol](./contracts/interfaces/IERC721Buyable.sol), the other contracts are only here for tests and integration demonstration.
-
-the _client_ folder is a react application that provides a minimal **demonstration** of how this ERC can be integrated into marketplaces but without the need for an intermediate smart contract: a **decentralized marketplace** can be built around this interface but centralized ones can still integrate it. It also includes an interface for the owner of a token allowing him to put it up for sale at any price or remove it, and for the owner of the contract to update the royalty rate.
 
 # Installation Guide <a name="guide"></a>
 
@@ -101,3 +100,7 @@ module.exports = {
 ```
 
 _\* Before deploying and using any network make sure you have ETH in you wallet to pay for the transactions fees._
+
+# Dapp <a name="dapp"></a>
+
+The [_client_](./client/) folder is a react application that provides a minimal **demonstration** of how this ERC can be integrated into marketplaces but without the need for an intermediate smart contract: a **decentralized marketplace** can be built around this interface but centralized ones can still integrate it. It also includes an interface for the owner of a token allowing him to put it up for sale at any price or remove it, and for the owner of the contract to update the royalty rate.
