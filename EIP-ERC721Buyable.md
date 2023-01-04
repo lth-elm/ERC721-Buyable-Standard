@@ -275,11 +275,11 @@ There are no backward compatibility issues, this implementation is an extension 
 
 ## Test Cases
 
-_Test cases for an implementation are mandatory for EIPs that are affecting consensus changes. If the test suite is too large to reasonably be included inline, then consider adding it as one or more files in `../assets/eip-####/`._
+Tests can be found under [test/](./test/) folder.
 
 ## Reference Implementation
 
-_An optional section that contains a reference/example implementation that people can use to assist in understanding or implementing this specification. If the implementation is too large to reasonably be included inline, then consider adding it as one or more files in `../assets/eip-####/`._
+Contract implementation can be found under [contracts/](./contracts/) folder and Dapp integration example under [client/](./client/).
 
 ## Security Considerations
 
