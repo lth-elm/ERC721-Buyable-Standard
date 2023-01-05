@@ -19,7 +19,7 @@ As of now, we expect marketplaces to voluntarily pay royalties “off-chain”. 
 
 Whilst we are aware the code could be improved, we wanted to share the idea here on this forum. We greatly appreciate any pull requests aiming to optimise gas fees.
 
-<img src="./images/marketplaces-issues.png" alt="marketplaces-issues" width="430"/> <img src="./images/erc721buyable.png" alt="erc721buyable" width="430"/>
+<img src="./images/marketplaces-issues.png" alt="marketplaces-issues" width="410"/> <img src="./images/erc721buyable.png" alt="erc721buyable" width="410"/>
 
 Additionally, we are conscious this improvement model by itself is only one brick to guarantee royalty-enforcement, simply because it does not stop the users from going on other marketplaces which may not enforce them (e.g. sudoswap, which attracted a lot of attention lately).
 
