@@ -13,6 +13,24 @@ To understand the use of this repository please read **[EIP-ERC721Buyable.md](EI
 
 # Presentation <a name="presentation"></a>
 
+Following numerous hacks last year where NFTs were stolen from major platforms (i.e Opensea), we thought of **integrating the NFT trading system directly on the blockchain, within the smart contract**. The main reason these hacks occurred was due to some platforms storing order signatures off-chain, inside their API. This allowed hackers to create a loophole, changing the NFT prices and effectively buying the pieces for a lower amount than their original price. The NFT trading system we thought about would allow total independence, as the user would be able to trade his NFT at any point, without relying on a marketplace. Using this system, it would also make total sense to create a standard which would guarantee royalties are correctly enforced (through the blockchain), as long as the sale or purchase follows this specific method.
+
+As of now, we expect marketplaces to voluntarily pay royalties “off-chain”. But this process is not yet widely adopted and relies on the marketplace being trustworthy. We have created an improvement proposal that **automatically calculates & pays royalties on-chain for every token sold: [EIP](./EIP-ERC721Buyable.md).** On top of that, our improvement proposal allows the ERC-721 token to be financially tradeable in ETH on-chain without the need for marketplaces and the issues that comes with them: security, royalties not respected or limited.
+
+Whilst we are aware the code could be improved, we wanted to share the idea here on this forum. We greatly appreciate any pull requests aiming to optimise gas fees.
+
+<img src="./images/marketplaces-issues.png" alt="marketplaces-issues" width="430"/> <img src="./images/erc721buyable.png" alt="erc721buyable" width="430"/>
+
+Additionally, we are conscious this improvement model by itself is only one brick to guarantee royalty-enforcement, simply because it does not stop the users from going on other marketplaces which may not enforce them (e.g. sudoswap, which attracted a lot of attention lately).
+
+Therefore, the NFT smart contract may be abe to inherit from the Operator Filter Registry put in place by Opensea, allowing creators to blacklist marketplaces which do not enforce royalties. Alternatives may include Blur.io’s DefaultOperatorFilter solution ([see here](https://github.com/blur-io/operator-filter-registry)), or Vectorized’s ClosedSea for a gas-efficient solution ([see here](https://github.com/Vectorized/closedsea)).
+
+Getting back to our improvement proposal, we build a decentralised NFT marketplace, fully hosted in a decentralized way in order to show and explain in its simplest way possible how our solution could be used: https://erc721buyable.app.runonflux.io/.
+
+_NB: As of now, this solution only works with NFTs stored on-chain, for demonstration purposes._
+
+We truly believe this decentralised marketplace model could be of interest for users who may prefer full control over their holdings / creations, and may not trust third-party intermediaries such as Marketplaces.
+
 # Installation Guide <a name="guide"></a>
 
 ## Dependencies <a name="dependencies"></a>
