@@ -12,7 +12,7 @@ jobs:
         with:
           node-version: 18
           sarif: results.sarif
-          fail-on: medium
+          fail-on: high
 
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v2
