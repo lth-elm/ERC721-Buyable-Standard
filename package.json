@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "This EIP allows an ERC-721 token to become buyable and to specifically enforce royalties as a percentage, directly on-chain, without entrusting a third-party.",
   "main": "index.js",
-  "engines": {
-    "node": "^18.0.0",
-    "npm": "^8.0.0"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
