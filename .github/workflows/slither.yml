@@ -7,12 +7,12 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Run Slither
-        continue-on-error: true
         uses: crytic/slither-action@v0.2.0
         id: slither
         with:
           node-version: 18
           sarif: results.sarif
+          fail-on: medium
 
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v2
