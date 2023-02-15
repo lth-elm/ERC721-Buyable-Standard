@@ -4,6 +4,8 @@
   "description": "This EIP allows an ERC-721 token to become buyable and to specifically enforce royalties as a percentage, directly on-chain, without entrusting a third-party.",
   "main": "index.js",
   "scripts": {
+    "toolbox": "docker run -it --rm -v $PWD:/src trailofbits/eth-security-toolbox",
+    "echidna": "docker run -it --rm -v $PWD:/src ghcr.io/crytic/echidna/echidna",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Aubay <aubay.com>, BOCA Jeabby (@bjeabby1507), EL MERSHATI Laith (@lth-elm), KEMP Elia (@eliakemp)",
