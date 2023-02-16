@@ -21,15 +21,9 @@ jobs:
 
       - name: Run Echidna
         uses: crytic/echidna-action@v2
-        id: echidna
         with:
           solc-version: 0.8.9
           files: contracts/test/fuzzing/EIPFuzzTest.sol
           contract: EIPFuzzTest
           config: contracts/test/fuzzing/config.yml
           crytic-args: --hardhat-ignore-compile --solc-remaps @openzeppelin/contracts=node_modules/@openzeppelin/contracts
-
-      - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: ${{ steps.echidna.output-file }}
