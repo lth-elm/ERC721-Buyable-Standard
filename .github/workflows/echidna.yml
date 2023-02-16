@@ -23,7 +23,7 @@ jobs:
         uses: crytic/echidna-action@v2
         with:
           solc-version: 0.8.9
-          files: contracts/test/fuzzing/
+          files: contracts/test/fuzzing/EIPFuzzTest.sol
           contract: EIPFuzzTest
           config: contracts/test/fuzzing/config.yml
           crytic-args: --hardhat-ignore-compile
