@@ -26,4 +26,4 @@ jobs:
           files: contracts/test/fuzzing/EIPFuzzTest.sol
           contract: EIPFuzzTest
           config: contracts/test/fuzzing/config.yml
-          crytic-args: --hardhat-ignore-compile --solc-remaps @openzeppelin/contracts=/src/node_modules/@openzeppelin/contracts --solc-args --allow-paths contracts
+          crytic-args: --hardhat-ignore-compile --solc-remaps @openzeppelin/contracts=/src/node_modules/@openzeppelin/contracts
