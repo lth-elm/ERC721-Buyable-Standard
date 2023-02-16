@@ -25,4 +25,5 @@ jobs:
           solc-version: 0.8.9
           files: contracts/test/fuzzing/
           contract: EIPFuzzTest
+          config: contracts/test/fuzzing/config.yml
           crytic-args: --hardhat-ignore-compile
