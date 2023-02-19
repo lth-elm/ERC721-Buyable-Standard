@@ -1,0 +1,29 @@
+name: Hardhat Test
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      #- name: Start local server
+      #  continue-on-error: false
+      #  run: |
+      #    npx hardhat node &
+      #    npx hardhat run --network localhost scripts/deploy.js
+
+      - name: Run Test
+        run: npx hardhat test
