@@ -90,7 +90,7 @@ const GOERLI_PRIVATE_KEY = process.env.GOERLI_PRIVATE_KEY;
 
 module.exports = {
   solidity: {
-    version: "0.8.17",
+    version: "0.8.16",
     settings: {
       optimizer: {
         enabled: true,
