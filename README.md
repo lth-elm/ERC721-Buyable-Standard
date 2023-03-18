@@ -1,4 +1,4 @@
-# <h1 align="center"> Buyable ERC721 Standard 🔗 </h1>
+# <h1 align="center"> ⛓️ Buyable ERC721 Standard ⛓️ </h1>
 
 _To understand the use of this repository please read **[eip-6260.md](eip-6260.md)**. The main solidity files are [ERC721Buyable.sol](./contracts/ERC721Buyable.sol) and its interface [IERC721Buyable.sol](./contracts/interfaces/IERC721Buyable.sol), the other contracts are here for tests and integration demonstration._
 
