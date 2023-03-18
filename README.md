@@ -1,5 +1,7 @@
 # <h1 align="center"> ⛓️ Buyable ERC721 Standard ⛓️ </h1>
 
+![BuyableERC721StandardApp](https://user-images.githubusercontent.com/62894505/226118665-8ce0fef0-6579-4f61-86d4-3a9385e52997.gif)
+
 _To understand the use of this repository please read **[eip-6260.md](eip-6260.md)**. The main solidity files are [ERC721Buyable.sol](./contracts/ERC721Buyable.sol) and its interface [IERC721Buyable.sol](./contracts/interfaces/IERC721Buyable.sol), the other contracts are here for tests and integration demonstration._
 
 ---
