@@ -1,16 +1,10 @@
 # <h1 align="center"> ⛓️ Buyable ERC721 Standard ⛓️ </h1>
 
-_To understand the use of this repository please read **[eip-6260.md](eip-6260.md)**. The main solidity files are [ERC721Buyable.sol](./contracts/ERC721Buyable.sol) and its interface [IERC721Buyable.sol](./contracts/interfaces/IERC721Buyable.sol), the other contracts are here for tests and integration demonstration._
+_To understand the use of this repository please read **[eip-6260.md](https://github.com/lth-elm/ERC721-Buyable-Standard/blob/main/eip-6260.md)**. The main solidity files are [ERC721Buyable.sol](./contracts/ERC721Buyable.sol) and its interface [IERC721Buyable.sol](./contracts/interfaces/IERC721Buyable.sol), the other contracts are here for tests and integration demonstration._
 
 [![Slither Analysis](https://github.com/lth-elm/ERC721-Buyable-Standard/actions/workflows/slither.yml/badge.svg)](https://github.com/lth-elm/ERC721-Buyable-Standard/actions/workflows/slither.yml)
 [![Echidna Test](https://github.com/lth-elm/ERC721-Buyable-Standard/actions/workflows/echidna.yml/badge.svg)](https://github.com/lth-elm/ERC721-Buyable-Standard/actions/workflows/echidna.yml)
 [![Hardhat Test](https://github.com/lth-elm/ERC721-Buyable-Standard/actions/workflows/hardhat-test.yml/badge.svg)](https://github.com/lth-elm/ERC721-Buyable-Standard/actions/workflows/hardhat-test.yml)
-
-&nbsp;
-
-<p align="center"> 
-   <img src="https://user-images.githubusercontent.com/62894505/226118665-8ce0fef0-6579-4f61-86d4-3a9385e52997.gif" alt="BuyableERC721StandardAppGIF" />
-</p>
 
 ---
 
@@ -134,5 +128,9 @@ module.exports = {
 _\* Before deploying and using any network make sure you have ETH in you wallet to pay for the transactions fees._
 
 # Dapp <a name="dapp"></a>
+
+<p align="center"> 
+   <img src="https://user-images.githubusercontent.com/62894505/226118665-8ce0fef0-6579-4f61-86d4-3a9385e52997.gif" alt="BuyableERC721StandardAppGIF" />
+</p>
 
 The [_client_](./client/) folder is a react application that provides a minimal **demonstration** of how this ERC can be integrated into marketplaces but without the need for an intermediate smart contract: a **decentralized marketplace** can be built around this interface but centralized ones can still integrate it. It also includes an interface for the owner of a token allowing him to put it up for sale at any price or remove it, and for the owner of the contract to update the royalty rate.
