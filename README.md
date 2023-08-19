@@ -31,7 +31,7 @@ Additionally, we are conscious this improvement model by itself is only one bric
 
 Therefore, the NFT smart contract may be abe to inherit from the Operator Filter Registry put in place by Opensea, allowing creators to blacklist marketplaces which do not enforce royalties. Alternatives may include Blur.io’s DefaultOperatorFilter solution ([see here](https://github.com/blur-io/operator-filter-registry)), or Vectorized’s ClosedSea for a gas-efficient solution ([see here](https://github.com/Vectorized/closedsea)).
 
-Getting back to our improvement proposal, we build a decentralised NFT marketplace, fully hosted in a decentralized way in order to show and explain in its simplest way possible how our solution could be used: https://erc721buyable.app.runonflux.io/.
+Getting back to our improvement proposal, we build a decentralised NFT marketplace, fully hosted in a decentralized way in order to show and explain in its simplest way possible how our solution could be used: https://erc721buyable.app.runonflux.io/ ([alternatively](erc721buyable.vercel.app/)).
 
 _NB: As of now, this solution only works with NFTs stored on-chain, for demonstration purposes._
 
